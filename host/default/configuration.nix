@@ -97,7 +97,7 @@ in
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.enable = true;
-  users.users = [
+  users.userList = [
     {
       name = "rouaud";
       description = "Lucas ROUAUD";
@@ -105,8 +105,8 @@ in
     }
     {
       name = "root";
-      description = "@root to rule them all";
       extraGroups = [ "wheel" ];
+      isNormalUser = false;
     }
   ];
 

@@ -7,8 +7,8 @@ in
   options.users = {
     enable = lib.mkEnableOption "enable users module";
 
-    userName = lib.mkOption {
-      default = "user";
+    userList = lib.mkOption {
+      default = [];
       description = "@username";
     };
   };
@@ -17,14 +17,15 @@ in
     users.users = builtins.listToAttrs (map (user: {
         name = user.name;
         value = {
-          isNormalUser = true;
-          initialPassword = "";
-          description = user.description;
+          isNormalUser = user.isNormalUser or true;
+	  # By default, no password! Do not forget to use `passwd`.
+          initialPassword = null;
+          description = user.description or null;
           shell = user.shell or pkgs.fish;
           # By default, no one have SUDO access.
           extraGroups = user.extraGroups or [];
         };
-      }) cfg.users);
+      }) cfg.userList);
   };
 }
 
