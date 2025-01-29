@@ -4,12 +4,16 @@
 
 { config, pkgs, inputs, ... }:
 
+let
+  module = /etc/nixos/module;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./package.nix
       inputs.home-manager.nixosModules.default
+      ${module}/user.nix
     ];
 
   # Bootloader.
@@ -92,26 +96,26 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.rouaud = {
-    isNormalUser = true;
-    description = "Lucas ROUAUD";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
-    shell = pkgs.fish;
-    packages = with pkgs; [
-      kate
-    ];
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.root = {
-    shell = pkgs.fish;
-  };
+  user.enable = true;
+  user.userList = [
+    {
+      name = "rouaud";
+      description = "Lucas ROUAUD";
+      extraGroups = [ "wheel", "networkmanager" "audio" ];
+    }
+    {
+      name = "root";
+      description = "@root to rule them all";
+      extraGroups = [ "wheel" ];
+    }
+  ]
 
   home-manager = {
     # Also pass inputs to home-manager modules.
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "rouaud" = import ./home.nix;
+      "rouaud" = import ./home/rouaud.nix;
+      "root" = import ./home/root.nix
     };
   };
 
