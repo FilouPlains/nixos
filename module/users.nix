@@ -23,9 +23,8 @@ in
           shell = user.shell or pkgs.fish;
           # By default, no one have SUDO access.
           extraGroups = user.extraGroups or [];
-        }
-      }
-    }) cfg.users);
+        };
+      }) cfg.users);
   };
 }
 
