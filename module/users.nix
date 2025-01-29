@@ -1,10 +1,10 @@
 { lib, config, pkgs, ... }:
 
 let
-  cfg = config.user;
+  cfg = config.users;
 in
 {
-  options.user = {
+  options.users = {
     enable = lib.mkEnableOption "enable users module";
 
     userName = lib.mkOption {
@@ -25,7 +25,7 @@ in
           extraGroups = user.extraGroups or [];
         }
       }
-    }) cfg.userList);
+    }) cfg.users);
   };
 }
 

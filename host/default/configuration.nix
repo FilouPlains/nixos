@@ -5,7 +5,7 @@
 { config, pkgs, inputs, ... }:
 
 let
-  module = /etc/nixos/module;
+  module = ../../module;
 in
 {
   imports =
@@ -13,7 +13,7 @@ in
       ./hardware-configuration.nix
       ./package.nix
       inputs.home-manager.nixosModules.default
-      ${module}/user.nix
+      "${module}/users.nix"
     ];
 
   # Bootloader.
@@ -96,26 +96,26 @@ in
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  user.enable = true;
-  user.userList = [
+  users.enable = true;
+  users.users = [
     {
       name = "rouaud";
       description = "Lucas ROUAUD";
-      extraGroups = [ "wheel", "networkmanager" "audio" ];
+      extraGroups = [ "wheel" "networkmanager" "audio" ];
     }
     {
       name = "root";
       description = "@root to rule them all";
       extraGroups = [ "wheel" ];
     }
-  ]
+  ];
 
   home-manager = {
     # Also pass inputs to home-manager modules.
     extraSpecialArgs = { inherit inputs; };
     users = {
       "rouaud" = import ./home/rouaud.nix;
-      "root" = import ./home/root.nix
+      "root" = import ./home/root.nix;
     };
   };
 
