@@ -105,6 +105,7 @@ in
     }
     {
       name = "root";
+      description = "System administrator";
       extraGroups = [ "wheel" ];
       isNormalUser = false;
     }

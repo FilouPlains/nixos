@@ -20,7 +20,7 @@ in
           isNormalUser = user.isNormalUser or true;
 	  # By default, no password! Do not forget to use `passwd`.
           initialPassword = null;
-          description = user.description or null;
+          description = user.description or "no description";
           shell = user.shell or pkgs.fish;
           # By default, no one have SUDO access.
           extraGroups = user.extraGroups or [];
