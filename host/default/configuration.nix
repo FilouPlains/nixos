@@ -9,10 +9,16 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include other nix files.
+      ./font.nix
       ./hardware-configuration.nix
       ./package.nix
+
+      # Other package setup.
       inputs.home-manager.nixosModules.default
+
+      # Moduke
       "${module}/users.nix"
       "${module}/stylix.nix"
     ];
