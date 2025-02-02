@@ -14,6 +14,7 @@ in
       ./package.nix
       inputs.home-manager.nixosModules.default
       "${module}/users.nix"
+      "${module}/stylix.nix"
     ];
 
   # Bootloader.
