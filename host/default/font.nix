@@ -4,7 +4,7 @@
 { pkgs, ... }:
 
 {
-  font.packages = with pkgs; [
+  fonts.packages = with pkgs; [
   # For NerdFont installation.
   (nerdfonts.override {
     fonts = [ "Inconsolata" ];
