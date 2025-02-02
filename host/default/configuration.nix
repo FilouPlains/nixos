@@ -117,7 +117,7 @@ in
     extraSpecialArgs = { inherit inputs; };
     users = {
       "rouaud" = import ./home/rouaud.nix;
-      "root" = import ./home/root.nix;
+      # "root" = import ./home/root.nix;
     };
   };
 
