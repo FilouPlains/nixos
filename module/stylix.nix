@@ -8,5 +8,5 @@ in
   stylix.base16Scheme = "${path}/configuration_file/nord.yaml";
 
   # Mandatory, even if not used…
-  stylix.image = ../img/wallpaper.png;
+  stylix.image = "${path}/img/wallpaper.png";
 }
