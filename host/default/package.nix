@@ -26,6 +26,9 @@
     # H
     htop
 
+    # I
+    inkscape
+
     # K
     kitty
 
