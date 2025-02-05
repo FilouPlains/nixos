@@ -1,8 +1,8 @@
-let
-  version = "release-24.11";
-in
 {
   description = "NixOS config flake";
+
+  # NixOS current version!
+  version = "release-24.11";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/${version}";
