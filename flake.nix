@@ -1,18 +1,15 @@
 {
   description = "NixOS config flake";
 
-  # NixOS current version!
-  version = "release-24.11";
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/${version}";
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
 
     home-manager = {
-      url = "github:nix-community/home-manager/${version}";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:danth/stylix/${version}";
+    stylix.url = "github:danth/stylix/release-24.11";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
