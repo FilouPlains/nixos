@@ -9,7 +9,7 @@
   stylix.polarity = "dark";
 
   # Mandatory, even if not used…
-  stylix.image = null;#"../img/wallpaper.png";
+  stylix.image = ../img/wallpaper.png;
 
   # Specify default fonts.
   stylix.fonts = {
