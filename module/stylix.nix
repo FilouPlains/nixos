@@ -1,15 +1,15 @@
 { pkgs, ... }:
 
-let
-  path = /etc/nixos;
-in
+# let
+#   path = /etc/nixos;
+# in
 {
   # Choosen color scheme.
-  stylix.base16Scheme = "${path}/configuration_file/nord.yaml";
+  stylix.base16Scheme = "../configuration_file/nord.yaml";
   stylix.polarity = "dark";
 
   # Mandatory, even if not used…
-  stylix.image = "${path}/img/wallpaper.png";
+  stylix.image = "../img/wallpaper.png";
 
   # Specify default fonts.
   stylix.fonts = {
