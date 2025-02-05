@@ -31,9 +31,9 @@ in
 
   # Specify default fonts size.
   stylix.fonts.sizes = {
-    applications = 12;
+    applications = 15;
     terminal = 15;
-    desktop = 12;
-    popups = 12;
+    desktop = 15;
+    popups = 15;
   };
 }
