@@ -9,7 +9,7 @@ in
 {
   # Declare manually installed packages.
   nixpkgs.config.packageOverrides = pkgs: {
-    g = pkgs.callPackage "${path}/package/g/default.nix" { };
+    g = pkgs.callPackage "../../package/g/default.nix" { };
   };
 
   # List packages installed in system profile. To search, run:
