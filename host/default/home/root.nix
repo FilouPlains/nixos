@@ -1,6 +1,14 @@
 { config, pkgs, ... }:
 
+let
+  module = ../../../module/home_manager;
+in
 {
+  import =
+    [
+      "${module}/fish.nix"
+    ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "root";
