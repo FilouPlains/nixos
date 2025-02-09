@@ -4,6 +4,11 @@
 { pkgs, ... }:
 
 {
+  # Declare manually installed packages.
+  nixpkgs.config.packageOverrides = pkgs: {
+    g = pkgs.callPackage ../../package/g/default.nix { };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -21,6 +26,7 @@
     fish
 
     # G
+    g
     git
 
     # H
