@@ -59,9 +59,6 @@ in
     # S
     sl
 
-    # T
-    tree
-
     # V
     vesktop
     vlc
