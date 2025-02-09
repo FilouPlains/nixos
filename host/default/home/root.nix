@@ -4,7 +4,7 @@ let
   module = ../../../module/home_manager;
 in
 {
-  import =
+  imports =
     [
       "${module}/fish.nix"
     ];
