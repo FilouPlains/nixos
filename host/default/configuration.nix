@@ -148,6 +148,15 @@ in
   #   enableSSHSupport = true;
   # };
 
+  # Automatic cleaning.
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 15d";
+  };
+
+  nix.settings.auto-optimise-store = true;
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
