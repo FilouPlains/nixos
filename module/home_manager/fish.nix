@@ -29,6 +29,14 @@
       # O
       off = "shutdown now";
 
+      # S
+      shift-audio = ''pactl load-module module-remap-sink \
+			    sink_name=reverse-stereo \
+                            master=0 \
+                            channels=2 \
+                            master_channel_map=front-right,front-left \
+                            channel_map=front-left,front-right'';
+
       # T
       t = "g --tree --icons --size";
       table = "g --statistic --all --table --table-style=unicode --title --relative-time --dir-first --sort name --git --time-style=long-iso";
