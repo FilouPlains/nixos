@@ -4,11 +4,13 @@
   programs.fish = {
     enable = true;
 
+    # Everything that should be launch with the terminal.
     interactiveShellInit = /* fish */ ''
       # Disable fish greeting.
       set fish_greeting
     '';
 
+    # Alias over here.
     shellAliases = {
       # C
       c = "clear;ls";
@@ -49,5 +51,38 @@
       # V
       vim = "nvim";
     };
+
+    # Install plugins there.
+    plugins = [
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
+    ];
+
+    # Define functions here.
+    functions = {
+      # mkdir + cd inside the created directory.
+      mkcd = /* fish */ '' 
+        function mkcd --argument name --description "Create a directory and cd into it"
+          mkdir -p $name
+          cd $name
+        end
+      '';
+    };
   };
+
+  home.activation.configure-tide = lib.hm.dag.entryAfter ["writeBoundary"] /* fish */ ''
+    ${pkgs.fish}/bin/fish -c "tide configure --auto \
+      --style=Classic \
+      --prompt_colors='16 colors' \
+      --show_time='24-hour format' \
+      --classic_prompt_separators=Slanted \
+      --powerline_prompt_heads=Round \
+      --powerline_prompt_tails=Round \
+      --powerline_prompt_style='Two lines, frame' \
+      --prompt_connection=Disconnected \
+      --powerline_right_prompt_frame=No \
+      --prompt_spacing=Sparse \
+      --icons='Many icons' \
+      --transient=No"
+    '';
 }
