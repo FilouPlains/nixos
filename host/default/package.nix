@@ -42,6 +42,7 @@ in
     kitty
 
     # L
+    lazygit
     libvlc
 
     # M
