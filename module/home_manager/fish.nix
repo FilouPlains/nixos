@@ -52,12 +52,6 @@
       vim = "nvim";
     };
 
-    # Install plugins there.
-    plugins = [
-      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-      { name = "tide"; src = pkgs.fishPlugins.tide.src; }
-    ];
-
     # Define functions here.
     functions = {
       # mkdir + cd inside the created directory.

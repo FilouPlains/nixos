@@ -27,10 +27,13 @@ in
 
     # F
     fish
+    fishPlugins.grc
+    fishPlugins.tide
 
     # G
     g
     git
+    grc
 
     # H
     htop
