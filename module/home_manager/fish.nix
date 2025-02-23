@@ -22,6 +22,7 @@
 
       # L
       l = "g --all --title --dir-first --sort name --git --time-style=long-iso";
+      lg = "lazygit";
       ll = "g --all --title --dir-first --sort name --git --time-style=long-iso";
       ls = "g --icons --dir-first --sort name";
 
