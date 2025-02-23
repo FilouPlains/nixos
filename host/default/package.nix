@@ -28,7 +28,6 @@ in
     # F
     fish
     fishPlugins.grc
-    fishPlugins.tide
 
     # G
     g
@@ -62,6 +61,7 @@ in
 
     # S
     sl
+    starship
 
     # V
     vesktop
