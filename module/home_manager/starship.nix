@@ -87,7 +87,7 @@ in
         style = "fg:#ffffff bg:#1b4469";
         truncation_length = 3;
         truncate_to_repo = false;
-        format = "[   $path ]($style)";
+        format = "[   $path]($style)";
         truncation_symbol = "…/";
         home_symbol = "~";
         use_os_path_sep = true;
@@ -116,10 +116,10 @@ in
       };
 
       git_status = {
-        conflicted = "🏳";
-        ahead = "";
-        behind = "";
-        diverged = "";
+        conflicted = " $count";
+        ahead = "󱘨 $count";
+        behind = "󱘥 $count";
+        diverged = "⇡ahead_count⇣behind_count";
         up_to_date = "";
         untracked = "?$count";
         stashed = "+$count";
@@ -128,7 +128,7 @@ in
         renamed = "󰗧$count";
         deleted = "󰇾 $count";
         style = "fg:#ffffff bg:#c9510c";
-        format = "[$all_status ]($style)";
+        format = "[($all_status$ahead_behind )]($style)";
       };
     };
   };
