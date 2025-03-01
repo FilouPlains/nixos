@@ -22,6 +22,7 @@ in
 	"$fill "
 	"[](#222222)"
 	"$time"
+	"$conda"
 	"$status\n"
 	"$character"
       ];
@@ -129,6 +130,14 @@ in
         deleted = "󰇾 $count";
         style = "fg:#ffffff bg:#c9510c";
         format = "[($all_status$ahead_behind )]($style)";
+      };
+
+      conda =  {
+        disabled = false;
+        style = "fg:#ffffff bg:#7fb335";
+        format = "[ $symbol$environment ]($style)";
+        ignore_base = false;
+        symbol = " ";
       };
     };
   };
