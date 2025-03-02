@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: 
+{ config, lib, pkgs, ... }:
 
 {
   programs.fish = {
@@ -14,7 +14,6 @@
     shellAliases = {
       # C
       c = "clear;ls";
-      cat = "bat";
       catf = "bat --style=plain --paging never --color never";
 
       # H
@@ -55,13 +54,44 @@
 
     # Define functions here.
     functions = {
-      # mkdir + cd inside the created directory.
-      mkcd = /* fish */ '' 
-        function mkcd --argument name --description "Create a directory and cd into it"
-          mkdir -p $name
-          cd $name
-        end
-      '';
+      mkcd = {
+        body = /* fish */ '' 
+          mkdir -p $argv[1]
+          cd $argv[1]
+        '';
+        description = "mkdir and cd inside the created directory";
+      };
+
+      cat = {
+        body = /* fish */ ''
+          set path $argv
+
+          if test $(count $path) -eq 1
+            identify $path &> /dev/null 
+
+            if test $status -eq 0
+              kitten icat $path
+            else
+              bat --paging always $path
+            end
+          else
+            for subpath in $(find $path -maxdepth 0)
+              if test -d $subpath
+                continue
+              end
+
+              identify $subpath &> /dev/null 
+
+              if test $status -eq 0
+                kitten icat $subpath
+              else
+                bat --paging never $subpath
+              end
+            end
+          end
+        '';
+        description = "Cat files or images";
+      };
     };
 
     plugins = with pkgs.fishPlugins; [

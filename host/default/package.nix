@@ -38,6 +38,7 @@ in
     htop
 
     # I
+    imagemagick
     inkscape
 
     # K
