@@ -10,6 +10,22 @@
       set fish_greeting
     '';
 
+    # Abbreviation. Difference with alias is expension!
+    shellAbbrs = {
+      # L
+      lg = "lazygit";
+
+      # N
+      n = "nvim";
+
+      # U
+      update = "nixos-rebuild switch --flake /etc/nixos/#default --upgrade --impure";
+
+      # V
+      v = "nvim";
+      vim = "nvim";
+    }
+
     # Alias over here.
     shellAliases = {
       # C
@@ -21,12 +37,8 @@
 
       # L
       l = "g --all --title --dir-first --sort name --git --time-style=long-iso";
-      lg = "lazygit";
       ll = "g --all --title --dir-first --sort name --git --time-style=long-iso";
       ls = "g --icons --dir-first --sort name";
-
-      # N
-      n = "nvim";
 
       # O
       off = "shutdown now";
@@ -45,11 +57,6 @@
       top = "btop";
       tree = "g --tree --icons --size";
 
-      # U
-      update = "nixos-rebuild switch --flake /etc/nixos/#default --upgrade --impure";
-
-      # V
-      vim = "nvim";
     };
 
     # Define functions here.
@@ -99,19 +106,5 @@
     ];
   };
 
-  # home.activation.configure-tide = lib.hm.dag.entryAfter ["writeBoundary"] /* fish */ ''
-  #   ${pkgs.fish}/bin/fish -c "tide configure --auto \
-  #     --style=Classic \
-  #     --prompt_colors='16 colors' \
-  #     --show_time='24-hour format' \
-  #     --classic_prompt_separators=Slanted \
-  #     --powerline_prompt_heads=Round \
-  #     --powerline_prompt_tails=Round \
-  #     --powerline_prompt_style='Two lines, frame' \
-  #     --prompt_connection=Disconnected \
-  #     --powerline_right_prompt_frame=No \
-  #     --prompt_spacing=Sparse \
-  #     --icons='Many icons' \
-  #     --transient=No"
-  #   '';
+  xdg.configFile."fish/completions/g.fish".source = "../../package/g/g.fish";
 }
