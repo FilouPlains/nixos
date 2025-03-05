@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+let
+  path = /etc/nixos;
+in
 {
   programs.fish = {
     enable = true;
@@ -106,5 +109,5 @@
     ];
   };
 
-  xdg.configFile."fish/completions/g.fish".source = "../../package/g/g.fish";
+  xdg.configFile."fish/completions/g.fish".source = "${path}/package/g/g.fish";
 }
