@@ -24,7 +24,7 @@
       # V
       v = "nvim";
       vim = "nvim";
-    }
+    };
 
     # Alias over here.
     shellAliases = {
