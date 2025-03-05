@@ -18,9 +18,17 @@ in
       # Other package setup.
       inputs.home-manager.nixosModules.default
 
-      # Moduke
-      "${module}/users.nix"
+      # ======
+      # Module
+      # ======
+      # F
+      "${module}/fastfetch.nix"
+
+      # S
       "${module}/stylix.nix"
+
+      # U
+      "${module}/users.nix"
     ];
 
   # Bootloader.

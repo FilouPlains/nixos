@@ -26,6 +26,7 @@ in
     discord
 
     # F
+    fastfetch
     fish
     fishPlugins.grc
 
@@ -54,7 +55,6 @@ in
 
     # N
     nerdfonts
-    neofetch
     neovim
     nixpkgs-fmt
 
