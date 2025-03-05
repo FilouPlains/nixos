@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  path = /etc/nixos/module/home_manager/fastfetcher;
+  path = /etc/nixos/module/home_manager/fastfetch;
 in
 {
   /*
