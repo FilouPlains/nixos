@@ -21,9 +21,6 @@ in
       # ======
       # Module
       # ======
-      # F
-      "${module}/fastfetch.nix"
-
       # S
       "${module}/stylix.nix"
 

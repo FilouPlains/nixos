@@ -6,7 +6,11 @@ in
 {
   imports =
     [
+      # F
+      "${module}/fastfetch.nix"
       "${module}/fish.nix"
+
+      # S
       "${module}/starship.nix"
     ];
 
