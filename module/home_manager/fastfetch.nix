@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  fastfetch.settings = {
+  programs.fastfetch.settings = {
     logo = {
       source = "nixos_small";
       padding = {
