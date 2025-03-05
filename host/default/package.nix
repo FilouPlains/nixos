@@ -31,6 +31,7 @@ in
 
     # G
     g
+    gimp
     git
     grc
 
