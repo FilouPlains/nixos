@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  path = /etc/nixos;
+  path = /etc/nixos/module/home_manager/fastfetcher;
 in
 {
   /*
@@ -82,6 +82,6 @@ in
    * };
    */
 
-  xdg.configFile."fastfetch/logo_nix_white.png".source = "${path}/img/logo_nix_white.png";
-  xdg.configFile."fastfetch/config.jsonc".source = "./config*.jsonc";
+  xdg.configFile."fastfetch/logo_nix_white.png".source = "${path}/logo_nix_white.png";
+  xdg.configFile."fastfetch/config.jsonc".source = "${path}/config.jsonc";
 }
