@@ -7,7 +7,7 @@ in
   imports =
     [
       # F
-      "${module}/fastfetch.nix"
+      "${module}/fastfetch/fastfetch.nix"
       "${module}/fish.nix"
 
       # S
