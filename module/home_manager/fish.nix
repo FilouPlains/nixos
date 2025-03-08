@@ -11,6 +11,7 @@ in
     interactiveShellInit = /* fish */ ''
       # Disable fish greeting.
       set fish_greeting
+      fastfetch
     '';
 
     # Abbreviation. Difference with alias is expension!
