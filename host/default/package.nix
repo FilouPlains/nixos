@@ -48,6 +48,7 @@ in
 
     # L
     lazygit
+    lf
     libvlc
 
     # M
