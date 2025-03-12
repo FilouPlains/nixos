@@ -8,7 +8,15 @@ in
     [
       # F
       "${module}/fastfetch.nix"
+      "${module}/firefox.nix"
       "${module}/fish.nix"
+
+      # K
+      "${module}/keychain.nix"
+      "${module}/kitty.nix"
+
+      # L
+      "${module}/lh.nix"
 
       # S
       "${module}/starship.nix"
