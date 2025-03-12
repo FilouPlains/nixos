@@ -16,7 +16,7 @@ in
       "${module}/kitty.nix"
 
       # L
-      "${module}/lh.nix"
+      "${module}/lf.nix"
 
       # S
       "${module}/starship.nix"
