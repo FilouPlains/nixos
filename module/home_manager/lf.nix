@@ -2,6 +2,6 @@
 
 {
   programs.lf = {
-    enable = false;
+    enable = true;
   };
 }

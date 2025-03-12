@@ -14,4 +14,5 @@
       "--inherit any"
       "--quiet"
     ];
+  };
 }
