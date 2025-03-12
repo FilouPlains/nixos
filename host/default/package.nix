@@ -44,6 +44,7 @@ in
     inkscape
 
     # K
+    keychain
     kitty
 
     # L
