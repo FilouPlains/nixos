@@ -2,6 +2,7 @@
 
 let
   lib = import <nixpkgs/lib>;
+  stylix = config.lib.stylix.colors;
 in
 {
   programs.starship = {
@@ -12,15 +13,15 @@ in
       add_newline = true;
 
       format = builtins.concatStringsSep "" [
-        "╭─[](#222222)"
+        "╭─[](#${stylix.base03})"
 	"$os"
 	"$username"
 	"$hostname"
 	"$git_branch"
 	"$git_status"
-	"$directory[](#1b4469)"
+	"$directory[](#${stylix.base0C})"
 	"$fill "
-	"[](#222222)"
+	"[](#${stylix.base03})"
 	"$time"
 	"$conda"
 	"$status\n"
@@ -40,7 +41,7 @@ in
 
       os = {
         disabled = false;
-        style = "fg:#ffffff bg:#222222";
+        style = "fg:#ffffff bg:#${stylix.base03}";
         format = "[$symbol ]($style)";
         symbols = {
           Arch = "󰣇";
@@ -60,15 +61,15 @@ in
 
       username = {
         disabled = false;
-        style_user = "fg:#ffffff bg:#222222";
-        style_root = "fg:#fbeeed bg:#222222";
+        style_user = "fg:#ffffff bg:#${stylix.base03}";
+        style_root = "fg:#fbeeed bg:#${stylix.base03}";
         format = "[  $user ]($style)";
         show_always = true;
       };
 
       hostname = {
         disabled = false;
-        style = "fg:#ffffff bg:#222222";
+        style = "fg:#ffffff bg:#${stylix.base03}";
         ssh_only = false;
         ssh_symbol = "󰖟 ";
         format = "[ $ssh_symbol󰔂  $hostname ]($style)";
@@ -77,7 +78,7 @@ in
 
       time = {
         disabled = false;
-        style = "fg:#ffffff bg:#222222";
+        style = "fg:#ffffff bg:#${stylix.base03}";
         # hour:minute format
         time_format = "%R";
         format = "[   $time ]($style)";
@@ -85,7 +86,7 @@ in
 
       directory = {
         disabled = false;
-        style = "fg:#ffffff bg:#1b4469";
+        style = "fg:#ffffff bg:#${stylix.base0C}";
         truncation_length = 3;
         truncate_to_repo = false;
         format = "[   $path]($style)";
@@ -96,12 +97,12 @@ in
 
       status = {
         disabled = false;
-        style = "fg:#ffffff bg:#950606";
-        success_symbol = "[ 󰗡 ](fg:#ffffff bg:#008000)[](fg:#008000 bg:none)";
-        symbol = "  $status[](fg:#950606 bg:none)";
-        not_executable_symbol = "  $status[](fg:#950606 bg:none)";
-        not_found_symbol = "  $status[](fg:#950606 bg:none)";
-        sigint_symbol = "  $status[](fg:#950606 bg:none)";
+        style = "fg:#ffffff bg:#${stylix.base08}";
+        success_symbol = "[ 󰗡 ](fg:#ffffff bg:#${stylix.base0B})[](fg:#${stylix.base0B} bg:none)";
+        symbol = "  $status[](fg:#${stylix.base08} bg:none)";
+        not_executable_symbol = "  $status[](fg:#${stylix.base08} bg:none)";
+        not_found_symbol = "  $status[](fg:#${stylix.base08} bg:none)";
+        sigint_symbol = "  $status[](fg:#${stylix.base08} bg:none)";
         signal_symbol = "";
         format = "[$symbol]($style)";
       };
@@ -112,7 +113,7 @@ in
         truncation_length = 4;
         truncation_symbol = "…";
         ignore_branches = [ ];
-        style = "fg:#ffffff bg:#c9510c";
+        style = "fg:#ffffff bg:#${stylix.base09}";
         format = "[ $symbol$branch ]($style)";
       };
 
@@ -128,7 +129,7 @@ in
         staged = "+$count";
         renamed = "󰗧$count";
         deleted = "󰇾 $count";
-        style = "fg:#ffffff bg:#c9510c";
+        style = "fg:#ffffff bg:#${stylix.base09}";
         format = "[($all_status$ahead_behind )]($style)";
       };
 
