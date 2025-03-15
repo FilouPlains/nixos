@@ -101,4 +101,10 @@ complete -c g -s Q -l quote-name -d "enclose entry names in double quotes"
 complete -c g -s g -d "like -all, but do not list owner"
 complete -c g -s l -l long -d "use a long listing format"
 complete -c g -s o -d "like -all, but do not list group information"
-complete -c g -f -a "(__fish_complete_path)"
+
+# This STOOPID line is disabling fish `path completion`.
+#
+# Try with complete -f g + $(your path) + [tab] => nothing!
+# Try with complete -F g + $(your path) + [tab] => working!
+#
+# complete -c g -f -a "(__fish_complete_path)"
