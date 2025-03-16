@@ -76,6 +76,7 @@ in
     wget
 
     # X
+    xclip
     xwaylandvideobridge
   ];
 }
