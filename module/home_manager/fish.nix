@@ -106,6 +106,7 @@ in
     };
 
     plugins = with pkgs.fishPlugins; [
+      { name = "fzf"; inherit (fzf) src; }
       { name = "grc"; inherit (grc) src; }
       { name = "z"; inherit (z) src; }
     ];
