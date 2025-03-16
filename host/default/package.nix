@@ -29,6 +29,7 @@ in
     fastfetch
     fish
     fishPlugins.grc
+    fishPlugins.z
 
     # G
     g

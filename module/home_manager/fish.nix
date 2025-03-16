@@ -107,6 +107,7 @@ in
 
     plugins = with pkgs.fishPlugins; [
       { name = "grc"; inherit (grc) src; }
+      { name = "z"; inherit (z) src; }
     ];
   };
 
