@@ -53,6 +53,7 @@ in
     # L
     lazygit
     lf
+    libreoffice
     libvlc
 
     # M
