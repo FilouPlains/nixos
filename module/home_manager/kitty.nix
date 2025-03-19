@@ -6,6 +6,8 @@
     
     settings = {
       font_size = 15;
+      font_family = "Inconsolata Light";
+      bold_font = "Inconsolata Black";
     };
   };
 }
