@@ -4,20 +4,11 @@ let
   path = /etc/nixos;
 in
 {
-  # Choosen color scheme.
-  
-  /** 
-    # Name
-    Nord.
-
-    # Author
-    arcticicestudio.
-
-    # Variation
-    Dark.
-  */
+  # Colour theme.
   stylix.base16Scheme = {
     name = "nord";
+    author = "arcticicestudio";
+    variant = "dark";
 
     base00 = "2e3440";
     base01 = "3b4252";
