@@ -113,5 +113,5 @@ in
   };
 
   xdg.configFile."fish/completions/g.fish".source = "${path}/package/g/g.fish";
-  xdg.configFile."fish/completions/z.fish".source = "${path}/package/z/z.fish";
+  xdg.configFile."fish/completions/zoxide.fish".source = "${path}/package/zoxide/zoxide.fish";
 }

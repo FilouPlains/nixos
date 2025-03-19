@@ -31,7 +31,6 @@ in
     fish
     fishPlugins.fzf
     fishPlugins.grc
-    fishPlugins.z
     fzf
 
     # G
@@ -81,5 +80,8 @@ in
     # X
     xclip
     xwaylandvideobridge
+
+    # Z
+    zoxide
   ];
 }

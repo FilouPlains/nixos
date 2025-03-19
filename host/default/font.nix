@@ -6,9 +6,11 @@
 {
   fonts.packages = with pkgs; [
   # For NerdFont installation.
-  (nerdfonts.override {
-    fonts = [ "Inconsolata" ];
-  })
+  (
+    nerdfonts.override {
+      fonts = [ "Inconsolata" ];
+    }
+  )
 
   # I
   inconsolata
