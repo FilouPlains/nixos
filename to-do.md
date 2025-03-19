@@ -21,7 +21,7 @@
     2. Kitty
     3. Setup firefox ???
     4. LF
-    5. BTOP : bonnes couleurs, utiliser stylix + home-manager
+    [DONE] 5. BTOP : bonnes couleurs, utiliser stylix + home-manager
     6. dotfiles 
 
 
