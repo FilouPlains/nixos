@@ -6,6 +6,9 @@ in
 {
   imports =
     [
+      # B
+      "${module}/btop.nix"
+
       # F
       "${module}/fastfetch.nix"
       "${module}/firefox.nix"

@@ -5,13 +5,12 @@
     enable = true;
 
     settings = {
-      color_theme = "nord";
-      theme_background = False;
-      truecolor = False;
-      force_tty = False;
+      theme_background = false;
+      truecolor = false;
+      force_tty = false;
       presets = "cpu:1:default,proc:0:default cpu:0:default,mem:0:default,net:0:default cpu:0:block,net:0:tty";
-      vim_keys = False;
-      rounded_corners = True;
+      vim_keys = false;
+      rounded_corners = true;
       graph_symbol = "braille";
       shown_boxes = "cpu mem proc";
       update_ms = 2000;
