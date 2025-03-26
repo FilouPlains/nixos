@@ -25,7 +25,7 @@ in
 {
   programs.kitty = {
     enable = true;
-    
+
     settings = {
       # ===========
       # FONT FAMILY
@@ -52,7 +52,8 @@ in
       # Disabling separators.
       tab_bar_style = "separator";
       tab_separator = ''""'';
-     
+
+      tab_bar_min_tabs = 1;
     };
 
     # Have to applied this parameter like that, so it override stylix value.
