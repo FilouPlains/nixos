@@ -5,7 +5,7 @@
     enable = true;
 
     keys = [
-       "github_id_rsa"
+      "github_id_rsa"
     ];
 
     agents = [ "ssh" ];

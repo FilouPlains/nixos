@@ -11,7 +11,12 @@ in
     interactiveShellInit = /* fish */ ''
       # Disable fish greeting.
       set fish_greeting
+
+      # Picture showing.
       fastfetch
+
+      # Enable zoxide.
+      zoxide init fish | source
     '';
 
     # Abbreviation. Difference with alias is expension!
@@ -112,5 +117,4 @@ in
   };
 
   xdg.configFile."fish/completions/g.fish".source = "${path}/package/g/g.fish";
-  xdg.configFile."fish/completions/zoxide.fish".source = "${path}/package/zoxide/zoxide.fish";
 }

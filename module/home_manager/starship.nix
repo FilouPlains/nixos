@@ -14,18 +14,18 @@ in
 
       format = builtins.concatStringsSep "" [
         "╭─[](#${stylix.base03})"
-	"$os"
-	"$username"
-	"$hostname"
-	"$git_branch"
-	"$git_status"
-	"$directory[](#${stylix.base0C})"
-	"$fill "
-	"[](#${stylix.base03})"
-	"$time"
-	"$conda"
-	"$status\n"
-	"$character"
+        "$os"
+        "$username"
+        "$hostname"
+        "$git_branch"
+        "$git_status"
+        "$directory[](#${stylix.base0C})"
+        "$fill "
+        "[](#${stylix.base03})"
+        "$time"
+        "$conda"
+        "$status\n"
+        "$character"
       ];
 
       right_format = "";
@@ -133,7 +133,7 @@ in
         format = "[($all_status$ahead_behind )]($style)";
       };
 
-      conda =  {
+      conda = {
         disabled = false;
         style = "fg:#ffffff bg:#7fb335";
         format = "[ $symbol$environment ]($style)";
