@@ -69,6 +69,7 @@ in
 
     # S
     sl
+    scrcpy
     starship
 
     # V
