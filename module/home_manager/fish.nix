@@ -52,14 +52,6 @@ in
       # O
       off = "shutdown now";
 
-      # S
-      shift-audio = ''pactl load-module module-remap-sink \
-			    sink_name=reverse-stereo \
-                            master=0 \
-                            channels=2 \
-                            master_channel_map=front-right,front-left \
-                            channel_map=front-left,front-right'';
-
       # T
       t = "g --tree --icons --size";
       table = "g --statistic --all --table --table-style=unicode --title --relative-time --dir-first --sort name --git --time-style=long-iso";
@@ -70,14 +62,7 @@ in
 
     # Define functions here.
     functions = {
-      mkcd = {
-        body = /* fish */ '' 
-          mkdir -p $argv[1]
-          cd $argv[1]
-        '';
-        description = "mkdir and cd inside the created directory";
-      };
-
+      # C
       cat = {
         body = /* fish */ ''
           set path $argv
@@ -107,6 +92,41 @@ in
           end
         '';
         description = "Cat files or images";
+      };
+
+      # M
+      mkcd = {
+        body = /* fish */ '' 
+          mkdir -p $argv[1]
+          cd $argv[1]
+        '';
+        description = "Create a directory and go inside it";
+      };
+
+      # S
+      shift-audio = {
+        body = /* fish */ ''
+	  # Get and set main volume.
+	  set __current_volume (pactl get-sink-volume (pactl get-default-sink) | string match -r "[0-9]+%")
+	  pactl set-sink-volume (pactl get-default-sink) 100%
+
+          # Shift left / right audio.
+	  pactl load-module module-remap-sink \
+	    sink_name=reverse-stereo \
+            master=0 \
+            channels=2 \
+            master_channel_map=front-right,front-left \
+            channel_map=front-left,front-right \
+            sink_properties=device.description="reverse_audio"
+
+          # Set default audio to the shifted one.
+	  pactl set-default-sink reverse-stereo
+
+          # Set volume of the new sink to the same as the old one.
+	  pactl set-sink-volume (pactl get-default-sink) $__current_volume
+          set --erase __current_volume
+	'';
+	description = "Shift left and right audio.";
       };
     };
 
