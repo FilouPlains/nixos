@@ -75,7 +75,7 @@ in
           type = "custom";
         }
       ];
-    } | > builtins.replaceStrings [ "\\\\" ] [ "\\" ];
+    } |> builtins.replaceStrings [ "\\\\" ] [ "\\" ];
 
   xdg.configFile."fastfetch/logo_nix_white.png".source = "${path}/logo_nix_white.png";
 }
