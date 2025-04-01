@@ -106,27 +106,42 @@ in
       # S
       shift-audio = {
         body = /* fish */ ''
-	  # Get and set main volume.
-	  set __current_volume (pactl get-sink-volume (pactl get-default-sink) | string match -r "[0-9]+%")
-	  pactl set-sink-volume (pactl get-default-sink) 100%
+          # Get main volume.
+          set __current_volume (pactl get-sink-volume (pactl get-default-sink) | string match -r "[0-9]+%")
 
-          # Shift left / right audio.
-	  pactl load-module module-remap-sink \
-	    sink_name=reverse-stereo \
-            master=0 \
-            channels=2 \
-            master_channel_map=front-right,front-left \
-            channel_map=front-left,front-right \
-            sink_properties=device.description="reverse_audio"
+          # If we are to "reverse-stereo", switch back to "normal".
+          if test (pactl get-default-sink) = "reverse-stereo"
+            # Get the "reverse-stereo" module id to unload it.
+            set __module_id (pactl list modules short | grep "reverse_audio" | cut -f1)
 
-          # Set default audio to the shifted one.
-	  pactl set-default-sink reverse-stereo
+            # Change back to "normal audio".
+            pactl unload-module $__module_id
+            pactl set-sink-volume (pactl get-default-sink) $__current_volume
 
-          # Set volume of the new sink to the same as the old one.
-	  pactl set-sink-volume (pactl get-default-sink) $__current_volume
+            set --erase __module_id
+          # Else, switch to "reverse-stereo".
+          else
+            pactl set-sink-volume (pactl get-default-sink) 100%
+
+            # Shift left / right audio.
+            pactl load-module module-remap-sink \
+              sink_name=reverse-stereo \
+              master=0 \
+              channels=2 \
+              master_channel_map=front-right,front-left \
+              channel_map=front-left,front-right \
+              sink_properties=device.description="reverse_audio"
+
+            # Set default audio to the shifted one.
+            pactl set-default-sink reverse-stereo
+
+            # Set volume of the new sink to the same as the old one.
+            pactl set-sink-volume (pactl get-default-sink) $__current_volume
+          end
+
           set --erase __current_volume
-	'';
-	description = "Shift left and right audio.";
+        '';
+        description = "Shift left and right audio.";
       };
     };
 
