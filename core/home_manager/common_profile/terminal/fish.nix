@@ -33,7 +33,7 @@ in
         n = "nvim";
 
         # U
-        update = "nixos-rebuild switch --flake /etc/nixos/#default --upgrade --impure";
+        update = "nixos-rebuild switch --upgrade --impure --flake /etc/nixos/#$hostname";
 
         # V
         v = "nvim";
