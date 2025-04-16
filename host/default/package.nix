@@ -52,7 +52,6 @@ in
 
     # L
     lazygit
-    lf
     libreoffice
     libvlc
 
@@ -82,6 +81,9 @@ in
     # X
     xclip
     xwaylandvideobridge
+
+    # Y
+    yazi
 
     # Z
     zoxide
