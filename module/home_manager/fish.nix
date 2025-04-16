@@ -16,7 +16,7 @@ in
       fastfetch
 
       # Enable zoxide.
-      zoxide init fish | source
+      zoxide init fish --cmd cd | source
     '';
 
     # Abbreviation. Difference with alias is expension!
