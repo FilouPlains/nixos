@@ -13,13 +13,34 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.thanos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./host/thanos/configuration.nix
-        inputs.home-manager.nixosModules.default
-        inputs.stylix.nixosModules.stylix
-      ];
+    nixosConfigurations = {
+      thanos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./host/thanos/configuration.nix
+          inputs.home-manager.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
+
+      r2d2 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./host/r2d2/configuration.nix
+          inputs.home-manager.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
+
+      streetbird = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./host/street.bird/configuration.nix
+          inputs.home-manager.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
     };
   };
 }
+
