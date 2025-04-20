@@ -27,8 +27,8 @@ in
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "rouaud";
-  home.homeDirectory = "/home/rouaud";
+  home.username = "lucas.rouaud";
+  home.homeDirectory = "/home/lucas.rouaud";
 
   shiftAudio.enable = true;
 
@@ -91,7 +91,7 @@ in
   #
   # or
   #
-  #  /etc/profiles/per-user/rouaud/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/lucas.rouaud/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
