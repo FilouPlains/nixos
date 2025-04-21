@@ -76,7 +76,7 @@ in
               identify $path &> /dev/null 
 
               if test $status -eq 0
-                kitten icat $path
+                kitten icat --hold $path
               else
                 bat --paging always $path
               end
