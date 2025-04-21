@@ -66,6 +66,7 @@ in
     nerdfonts
     neovim
     nixpkgs-fmt
+    nvimpager
 
     # P
     pulseaudio
