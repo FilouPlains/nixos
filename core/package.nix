@@ -25,6 +25,10 @@ in
     # D
     discord
 
+    # E
+    exfat
+    exfatprogs
+
     # F
     fastfetch
     fd
