@@ -5,11 +5,11 @@ let
 in
 {
   options.users = {
-    enable = lib.mkEnableOption "enable users module";
+    enable = lib.mkEnableOption "Enable users module.";
 
     userList = lib.mkOption {
       default = [];
-      description = "@username";
+      description = "Declare users lists.";
     };
   };
 
@@ -19,7 +19,7 @@ in
         value = {
           isNormalUser = user.isNormalUser or true;
 	  # By default, no password! Do not forget to use `passwd`.
-          initialPassword = null;
+          initialPassword = "";
           description = user.description or "no description";
           shell = user.shell or pkgs.fish;
           # By default, no one have SUDO access.
