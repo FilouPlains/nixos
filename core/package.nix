@@ -6,23 +6,18 @@
 let
   path = /etc/nixos;
 
-  optionalPackage = name: lib.mkOption {
-    type = lib.types.bool;
-    default = true;
-    description = "Enable the ${name} package.";
-  };
+  # Get enable packages by this
+  enabledPackage = config.package.enable;
 
-  togglePackage = lib.genAttrs (map
-    (name: "enable${lib.strings.capitalize name}" packageName)
-    (name: optionalPackage name)
-  );
+  filterOutPackage = lib.attrNames (lib.filterAttrs (_: isEnable: !isEnable) mySet);
+  selectedPackage = package: lib.subtractLists (filterOutPackage enabledPackage) (package);
 in
 {
-  options.enablePackage = {
-    enable = lib.mkEnableOption "Enable package enabling module.";
-
-    listPackage = togglePackage;
-  }
+  options.package.enable = lib.mkOption {
+    type = lib.types.attrsOf lib.types.bool;
+    default = {};
+    description = "Enable or disable system packages.";
+  };
 
   config = {
     # Declare manually installed packages.
@@ -30,12 +25,15 @@ in
       g = pkgs.callPackage "${path}/package/g/default.nix" { };
     };
 
+    package = [
+      btop
+      discord
+      bat
+      g
+    ];
 
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs;  
+    environment.systemPackages = with pkgs; selectedPackage (package);
   }
-
 
   # # List packages installed in system profile. To search, run:
   # # $ nix search wget
