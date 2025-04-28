@@ -1,96 +1,119 @@
 # Edit this configuration file to define what should be installed on
 # your system.
 
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   path = /etc/nixos;
-in
-{
-  # Declare manually installed packages.
-  nixpkgs.config.packageOverrides = pkgs: {
-    g = pkgs.callPackage "${path}/package/g/default.nix" { };
+
+  optionalPackage = name: lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Enable the ${name} package.";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # B
-    bat
-    btop
+  togglePackage = lib.genAttrs (map
+    (name: "enable${lib.strings.capitalize name}" packageName)
+    (name: optionalPackage name)
+  );
+in
+{
+  options.enablePackage = {
+    enable = lib.mkEnableOption "Enable package enabling module.";
 
-    # C
-    chromium
+    listPackage = togglePackage;
+  }
 
-    # D
-    discord
+  config = {
+    # Declare manually installed packages.
+    nixpkgs.config.packageOverrides = pkgs: {
+      g = pkgs.callPackage "${path}/package/g/default.nix" { };
+    };
 
-    # E
-    exfat
-    exfatprogs
 
-    # F
-    fastfetch
-    fd
-    fish
-    fishPlugins.fzf
-    fishPlugins.grc
-    fzf
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = with pkgs;  
+  }
 
-    # G
-    g
-    gimp
-    git
-    grc
 
-    # H
-    htop
+  # # List packages installed in system profile. To search, run:
+  # # $ nix search wget
+  # environment.systemPackages = with pkgs; [
+  #   # B
+  #   batv
+  #   btop
 
-    # I
-    imagemagick
-    inkscape
+  #   # D
+  #   discord
 
-    # K
-    keychain
-    kitty
+  #   # E
+  #   exfat
+  #   exfatprogs
 
-    # L
-    lazygit
-    libreoffice
-    libvlc
+  #   # F
+  #   fastfetch
+  #   fd
+  #   fish
+  #   fishPlugins.fzf
+  #   fishPlugins.grc
+  #   fzf
 
-    # M
-    mlocate
+  #   # G
+  #   g
+  #   gimp
+  #   git
+  #   grc
 
-    # N
-    nerdfonts
-    neovim
-    nixpkgs-fmt
-    nvimpager
+  #   # H
+  #   htop
 
-    # P
-    pulseaudio
+  #   # I
+  #   imagemagick
+  #   inkscape
 
-    # S
-    sl
-    scrcpy
-    starship
+  #   # K
+  #   keychain
+  #   kitty
 
-    # V
-    vesktop
-    vlc
+  #   # L
+  #   lazygit
+  #   libreoffice
+  #   libvlc
 
-    # W
-    wget
+  #   # M
+  #   mlocate
 
-    # X
-    xclip
-    xwaylandvideobridge
+  #   # N
+  #   nerdfonts
+  #   neovim
+  #   nixpkgs-fmt
+  #   nvimpager
 
-    # Y
-    yazi
+  #   # P
+  #   pulseaudio
 
-    # Z
-    zoxide
-  ];
+  #   # S
+  #   sl
+  #   scrcpy
+  #   starship
+
+  #   # V
+  #   vesktop
+  #   vlc
+
+  #   # W
+  #   wget
+
+  #   # X
+  #   xclip
+  #   xwaylandvideobridge
+
+  #   # Y
+  #   yazi
+
+  #   # Z
+  #   zoxide
+  # ];
 }
+
