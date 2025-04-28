@@ -16,7 +16,7 @@ let
     if builtins.length list == 1 then
       builtins.getAttr (builtins.elemAt list 0) (source)
     else
-      getSubPackage (builtins.tail list) (builtins.getAttr (builtins.elemAt list 0) (source))
+      getSubPackage (builtins.getAttr (builtins.elemAt list 0) (source)) (builtins.tail list)
   );
 
   # List packages installed in system profile. To search, run:
