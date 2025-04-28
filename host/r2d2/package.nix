@@ -7,86 +7,96 @@ let
   path = /etc/nixos;
 
   filterOutPackage = lib.attrNames (lib.filterAttrs (_: isEnable: !isEnable) config.enablePackage);
-  selectedPackage = packageList: (lib.filterAttrs (packageName: _: !(builtins.elem packageName filterOutPackage)) packageList) |> builtins.attrValues;
   
+  selectedPackage = packageList: (lib.subtractLists filterOutPackage packageList) |>
+    builtins.map (packageName: lib.strings.splitString "." packageName) |>
+    builtins.map (packageNameList: getSubPackage pkgs packageNameList);
+
+  getSubPackage = (source: list:
+    if builtins.length list == 1 then
+      builtins.getAttr (builtins.elemAt list 0) (source)
+    else
+      getSubPackage (builtins.tail list) (builtins.getAttr (builtins.elemAt list 0) (source))
+  );
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  defaultPackage = with pkgs; [
+  defaultPackage = [
     # B
-    bat
-    btop
+    "bat"
+    "btop"
 
     # D
-    discord
+    "discord"
 
     # E
-    exfat
-    exfatprogs
+    "exfat"
+    "exfatprogs"
 
     # F
-    fastfetch
-    fd
-    fish
-    fishPlugins.fzf
-    fishPlugins.grc
-    fzf
+    "fastfetch"
+    "fd"
+    "fish"
+    "fishPlugins.fzf"
+    "fishPlugins.grc"
+    "fzf"
 
     # G
-    g
-    gimp
-    git
-    grc
+    "g"
+    "gimp"
+    "git"
+    "grc"
 
     # H
-    htop
+    "htop"
 
     # I
-    imagemagick
-    inkscape
+    "imagemagick"
+    "inkscape"
 
     # K
-    keychain
-    kitty
+    "keychain"
+    "kitty"
 
     # L
-    lazygit
-    libreoffice
-    libvlc
+    "lazygit"
+    "libreoffice-qt6-fresh"
+    "libvlc"
 
     # M
-    mlocate
+    "mlocate"
 
     # N
-    nerdfonts
-    neovim
-    nixpkgs-fmt
-    nvimpager
+    "nerdfonts"
+    "neovim"
+    "nixpkgs-fmt"
+    "nvimpager"
 
     # P
-    pulseaudio
+    "pulseaudio"
 
     # S
-    sl
-    scrcpy
-    starship
+    "sl"
+    "scrcpy"
+    "starship"
 
     # V
-    vesktop
-    vlc
+    "vesktop"
+    "vlc"
 
     # W
-    wget
+    "wget"
 
     # X
-    xclip
-    xwaylandvideobridge
+    "xclip"
+    "xwaylandvideobridge"
 
     # Y
-    yazi
+    "yazi"
 
     # Z
-    zoxide
-  ] |> builtins.map (packageItem: {name = packageItem.pname; value = packageItem;}) |> builtins.listToAttrs;
+    "zoxide"
+  ];
 in
 {
   options.enablePackage = lib.mkOption {
@@ -101,7 +111,7 @@ in
       g = pkgs.callPackage "${path}/package/g/default.nix" { };
     };
 
-    environment.systemPackages = with pkgs; selectedPackage (defaultPackage);
+    environment.systemPackages = selectedPackage (defaultPackage);
   };
 }
 
