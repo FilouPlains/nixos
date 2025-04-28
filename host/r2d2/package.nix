@@ -1,29 +1,27 @@
 # Edit this configuration file to define what should be installed on
 # your system.
 
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   path = /etc/nixos;
-in
-{
-  # Declare manually installed packages.
-  nixpkgs.config.packageOverrides = pkgs: {
-    g = pkgs.callPackage "${path}/package/g/default.nix" { };
-  };
 
+  filterOutPackage = lib.attrNames (lib.filterAttrs (_: isEnable: !isEnable) config.enablePackage);
+  selectedPackage = packageList: (lib.filterAttrs (packageName: _: !(builtins.elem packageName filterOutPackage)) packageList) |> builtins.attrValues;
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  defaultPackage = with pkgs; [
     # B
     bat
     btop
 
-    # C
-    chromium
-
     # D
     discord
+
+    # E
+    exfat
+    exfatprogs
 
     # F
     fastfetch
@@ -62,6 +60,7 @@ in
     nerdfonts
     neovim
     nixpkgs-fmt
+    nvimpager
 
     # P
     pulseaudio
@@ -87,5 +86,22 @@ in
 
     # Z
     zoxide
-  ];
+  ] |> builtins.map (packageItem: {name = packageItem.pname; value = packageItem;}) |> builtins.listToAttrs;
+in
+{
+  options.enablePackage = lib.mkOption {
+    type = lib.types.attrsOf lib.types.bool;
+    default = {};
+    description = "Enable or disable system packages.";
+  };
+
+  config = {
+    # Declare manually installed packages.
+    nixpkgs.config.packageOverrides = pkgs: {
+      g = pkgs.callPackage "${path}/package/g/default.nix" { };
+    };
+
+    environment.systemPackages = with pkgs; selectedPackage (defaultPackage);
+  };
 }
+
