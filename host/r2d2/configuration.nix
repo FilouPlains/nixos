@@ -163,6 +163,10 @@ in
 
   nix.settings.auto-optimise-store = true;
 
+  enablePackage = {
+    btop = true;
+  };
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.

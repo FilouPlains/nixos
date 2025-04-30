@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 {
   programs.btop = {
-    enable = true;
+    enable = osConfig.enablePackage.btop or true;
 
     settings = {
       theme_background = false;
