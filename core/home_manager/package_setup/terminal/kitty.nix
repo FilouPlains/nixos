@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
   stylix = config.lib.stylix.colors;
@@ -24,7 +24,7 @@ let
 in
 {
   programs.kitty = {
-    enable = true;
+    enable = osConfig.enablePackage.kitty or true;
 
     settings = {
       # ===========

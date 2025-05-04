@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 {
   programs.keychain = {
-    enable = true;
+    enable = osConfig.enablePackage.keychain or true;
 
     keys = [
       "github_id_rsa"

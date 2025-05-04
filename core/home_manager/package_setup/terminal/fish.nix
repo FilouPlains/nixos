@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
   path = /etc/nixos;
@@ -10,7 +10,7 @@ in
 
   config = {
     programs.fish = {
-      enable = true;
+      enable = osConfig.enablePackage.fish or true;
 
       # Everything that should be launch with the terminal.
       interactiveShellInit = /* fish */ ''

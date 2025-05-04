@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 let
   lib = import <nixpkgs/lib>;
@@ -6,7 +6,7 @@ let
 in
 {
   programs.starship = {
-    enable = true;
+    enable = osConfig.enablePackage.starship or true;
 
     # Configuration written in `~/.config/starship.toml`.
     settings = {

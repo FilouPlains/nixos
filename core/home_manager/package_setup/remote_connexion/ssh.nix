@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, osConfig, ... }:
 
 {
   programs.ssh = {
-    enable = true;
+    enable = osConfig.enablePackage.ssh or true;
     startAgent = true;
   };
 }
