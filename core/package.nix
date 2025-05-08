@@ -95,6 +95,7 @@ let
     "yazi"
 
     # Z
+    "zoom-us"
     "zoxide"
   ];
 in
