@@ -86,6 +86,7 @@ in
     yazi
 
     # Z
+    zoom-us
     zoxide
   ];
 }
