@@ -33,7 +33,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Define your hostname.
-  networking.hostName = "thanos";
+  networking.hostName = "r2d2";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
