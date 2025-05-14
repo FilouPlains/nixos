@@ -1,8 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, osConfig, lib, pkgs, ... }:
 
 let
-  lib = import <nixpkgs/lib>;
-  stylix = config.lib.stylix.colors;
+  stylix = osConfig.lib.stylix.colors;
 in
 {
   programs.starship = {
