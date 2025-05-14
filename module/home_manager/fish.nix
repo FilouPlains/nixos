@@ -1,7 +1,20 @@
-{ config, lib, pkgs, ... }:
+{ osConfig, config, lib, pkgs, ... }:
 
 let
   path = /etc/nixos;
+  
+  stylix = osConfig.lib.stylix.colors;
+  getRgb = canal: builtins.getAttr "base03-rgb-${canal}" stylix;
+  # For the `printf` command. We have bold > RGB > transience prompt > reset.
+  transiencePrompt = builtins.concatStringsSep "" [
+    "\\e[1m\\e[38;2;"
+    (getRgb "r")
+    ";"
+    (getRgb "g")
+    ";"
+    (getRgb "b")
+    "m%s\\e[0m"
+  ];
 in
 {
   options = {
@@ -22,6 +35,11 @@ in
 
         # Enable zoxide.
         zoxide init fish --cmd cd | source
+      '';
+
+      shellInitLast = /* fish */ ''
+        # Enable "transience" starship prompt.
+	enable_transience
       '';
 
       # Abbreviation. Difference with alias is expension!
@@ -147,6 +165,13 @@ in
             set --erase __current_volume
           '';
           description = "Shift left and right audio.";
+        };
+
+	starship_transient_prompt_func = {
+	  body = /* fish */ ''
+            printf "${transiencePrompt}" "── "
+          '';
+	  description = "Change transience prompt look.";
         };
       };
 
