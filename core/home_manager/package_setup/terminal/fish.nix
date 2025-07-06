@@ -4,13 +4,11 @@ let
   path = /etc/nixos;
 in
 {
-  options = {
-    shiftAudio.enable = lib.mkEnableOption "Enables shift audio function for fish.";
-  };
+  options.shiftAudio.enable = lib.mkEnableOption "Enables shift audio function for fish.";
 
   config = {
     programs.fish = {
-      enable = osConfig.enablePackage.fish or true;
+      enable = (!builtins.elem "fish" osConfig.disabledPackage) or true;
 
       # Everything that should be launch with the terminal.
       interactiveShellInit = /* fish */ ''

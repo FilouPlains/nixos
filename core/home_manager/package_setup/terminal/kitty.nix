@@ -3,28 +3,35 @@
 let
   stylix = config.lib.stylix.colors;
 
-  /**
+  /** 
     Formats a tab title string for Kitty with custom colors.
-
-    @param color : `string`
-        A string representing the color code to use for styling the tab.
-
-    @return `string`
-        Definition of the tab appearance.
+    
+    Parameters
+    ----------
+    foreground : `string`  
+        The name of the foreground color to apply on the tab text.
+    
+    background : `string`  
+        The name of the tab background color.
+    
+    Returns
+    -------
+    `string`  
+        The full Kitty setted tab.
   */
-  tab_format = color: (
+  tab_format = foreground: background: (
     builtins.concatStringsSep "" [
       "{fmt.bg.default} "
-      "{fmt.fg._${color}}"
-      "{fmt.bg._${color}}{fmt.fg._ffffff}{index} {title}{bell_symbol}{activity_symbol}"
-      "{fmt.bg.default}{fmt.fg._${color}}"
+      "{fmt.fg._${background}}"
+      "{fmt.bg._${background}}{fmt.fg._${foreground}}{index} {title}{bell_symbol}{activity_symbol}"
+      "{fmt.bg.default}{fmt.fg._${background}}"
       "{fmt.fg.default} "
     ]
   );
 in
 {
   programs.kitty = {
-    enable = osConfig.enablePackage.kitty or true;
+    enable = (!builtins.elem "kitty" osConfig.disabledPackage) or true;
 
     settings = {
       # ===========
@@ -38,11 +45,11 @@ in
       # ==========
       # Active.
       active_tab_font_style = "bold";
-      active_tab_title_template = tab_format stylix.base09;
+      active_tab_title_template = tab_format stylix.base06 stylix.base09;
 
       # Inactive.
       inactive_tab_font_style = "normal";
-      tab_title_template = tab_format stylix.base01;
+      tab_title_template = tab_format stylix.base06 stylix.base01;
 
       # Position and margin.
       tab_bar_edge = "top";

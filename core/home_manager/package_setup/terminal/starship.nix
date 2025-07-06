@@ -6,7 +6,7 @@ let
 in
 {
   programs.starship = {
-    enable = osConfig.enablePackage.starship or true;
+    enable = (!builtins.elem "starship" osConfig.disabledPackage) or true;
 
     # Configuration written in `~/.config/starship.toml`.
     settings = {

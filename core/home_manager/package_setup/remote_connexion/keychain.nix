@@ -2,7 +2,7 @@
 
 {
   programs.keychain = {
-    enable = osConfig.enablePackage.keychain or true;
+    enable = (!builtins.elem "keychain" osConfig.disabledPackage) or true;
 
     keys = [
       "github_id_rsa"

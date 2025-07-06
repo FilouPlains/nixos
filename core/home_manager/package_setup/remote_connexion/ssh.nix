@@ -2,7 +2,7 @@
 
 {
   programs.ssh = {
-    enable = osConfig.enablePackage.ssh or true;
+    enable = (!builtins.elem "ssh" osConfig.disabledPackage) or true;
     startAgent = true;
   };
 }
