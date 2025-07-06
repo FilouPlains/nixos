@@ -135,6 +135,11 @@ in
     };
   };
 
+  # disabledPackage = [
+  #   "htop"
+  #   "btop"
+  # ];
+
   stylix.enable = true;
 
   # Install firefox.

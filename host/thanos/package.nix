@@ -1,100 +1,127 @@
 # Edit this configuration file to define what should be installed on
 # your system.
 
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   path = /etc/nixos;
+
+  filterOutPackage = lib.attrNames (lib.filterAttrs (_: isEnable: !isEnable) config.enablePackage);
+  
+  /*selectedPackage = packageList: (lib.subtractLists filterOutPackage packageList) |>
+    builtins.map (packageName: lib.strings.splitString "." packageName) |>
+    builtins.map (packageNameList: getSubPackage pkgs packageNameList);
+*/
+  selectedPackage = packageList: (lib.subtractLists config.disabledPackage packageList) |>
+    builtins.map (packageName: lib.strings.splitString "." packageName) |>
+    builtins.map (packageNameList: getSubPackage pkgs packageNameList);
+
+  getSubPackage = (source: list:
+    if builtins.length list == 1 then
+      builtins.getAttr (builtins.elemAt list 0) (source)
+    else
+      getSubPackage (builtins.getAttr (builtins.elemAt list 0) (source)) (builtins.tail list)
+  );
 in
 {
-  # Declare manually installed packages.
-  nixpkgs.config.packageOverrides = pkgs: {
-    g = pkgs.callPackage "${path}/package/g/default.nix" { };
+  options.enablePackage = lib.mkOption {
+    type = lib.types.attrsOf lib.types.bool;
+    default = {};
+    description = "Enable or disable system packages.";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    # B
-    bat
-    btop
+  options.disabledPackage = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    default = [];
+    description = "List of system packages to disable.";
+  };
 
-    # C
-    chromium
 
-    # D
-    discord
-    docker
+  config = {
+    # Declare manually installed packages.
+    nixpkgs.config.packageOverrides = pkgs: {
+      g = pkgs.callPackage "${path}/package/g/default.nix" { };
+    };
 
-    # F
-    fastfetch
-    fd
-    fish
-    fishPlugins.fzf
-    fishPlugins.grc
-    fzf
+    # List packages installed in system profile. To search, run:
+    # $ nix search wget
+    environment.systemPackages = selectedPackage ([
+      # B
+      "bat"
+      "btop"
 
-    # G
-    g
-    gimp
-    git
-    grc
+      # D
+      "discord"
 
-    # H
-    htop
+      # E
+      "exfat"
+      "exfatprogs"
 
-    # I
-    imagemagick
-    inkscape
+      # F
+      "fastfetch"
+      "fd"
+      "fish"
+      "fishPlugins.fzf"
+      "fishPlugins.grc"
+      "fzf"
 
-    # K
-    keychain
-    kitty
+      # G
+      "g"
+      "gimp"
+      "git"
+      "grc"
 
-    # L
-    lazygit
-    libreoffice
-    libvlc
+      # H
+      "htop"
 
-    # M
-    mlocate
+      # I
+      "imagemagick"
+      "inkscape"
 
-    # N
-    nerdfonts
-    neovim
-    nixpkgs-fmt
+      # K
+      "keychain"
+      "kitty"
 
-    # P
-    pulseaudio
+      # L
+      "lazygit"
+      "libreoffice-qt6-fresh"
+      "libvlc"
 
-    # Q
-    quarto
+      # M
+      "mlocate"
 
-    # S
-    sl
-    scrcpy
-    starship
+      # N
+      "nerdfonts"
+      "neovim"
+      "nixpkgs-fmt"
+      "nvimpager"
 
-    # T
-    texliveSmall
+      # P
+      "pulseaudio"
 
-    # V
-    vesktop
-    vlc
+      # S
+      "sl"
+      "scrcpy"
+      "starship"
 
-    # W
-    wget
+      # V
+      "vesktop"
+      "vlc"
 
-    # X
-    xclip
-    xwaylandvideobridge
+      # W
+      "wget"
 
-    # Y
-    yazi
+      # X
+      "xclip"
+      "xwaylandvideobridge"
 
-    # Z
-    zola
-    zoom-us
-    zoxide
-  ];
+      # Y
+      "yazi"
+
+      # Z
+      "zoom-us"
+      "zoxide"
+  ]);
+  };
 }
+
