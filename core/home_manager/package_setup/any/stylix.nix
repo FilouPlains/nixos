@@ -28,7 +28,7 @@ in
     base0F = "5e81ac";
   };
  
-  stylix.polarity = "dark";
+  stylix.polarity = stylix.base16Scheme.variant;
 
   # Mandatory, even if not used…
   stylix.image = "${path}/img/wallpaper.png";
