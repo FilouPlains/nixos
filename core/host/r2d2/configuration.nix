@@ -134,6 +134,7 @@ in
   };
 
   stylix.enable = true;
+  shiftAudio.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;

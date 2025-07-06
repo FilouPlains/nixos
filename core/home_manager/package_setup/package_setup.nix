@@ -31,8 +31,6 @@
       terminal/starship.nix
     ];
 
-  shiftAudio.enable = true;
-
   # Do not change this value.
   # If you want to do so, check `Home Manager release notes`.
   home.stateVersion = "24.05";
