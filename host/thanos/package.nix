@@ -24,6 +24,7 @@ in
 
     # D
     discord
+    docker
 
     # F
     fastfetch
@@ -66,10 +67,16 @@ in
     # P
     pulseaudio
 
+    # Q
+    quarto
+
     # S
     sl
     scrcpy
     starship
+
+    # T
+    texliveSmall
 
     # V
     vesktop
@@ -86,6 +93,7 @@ in
     yazi
 
     # Z
+    zola
     zoom-us
     zoxide
   ];
