@@ -4,15 +4,11 @@
 
 { config, pkgs, inputs, ... }:
 
-let
-  module = ../../module;
-in
 {
   imports =
     [
       # Include other nix files.
       ./font.nix
-      ./hardware-configuration.nix
       ./package.nix
 
       # Other package setup.
@@ -21,30 +17,37 @@ in
       # ======
       # Module
       # ======
-      # S
-      "${module}/stylix.nix"
-
       # U
-      "${module}/users.nix"
+      ../nix_asset/module/users.nix
     ];
 
-  # Bootloader.
+  # ===========
+  # Boot loader
+  # ===========
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Define your hostname.
-  networking.hostName = baseNameOf ./.;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+    "pipe-operators"
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  # ============
+  # Connectivity
+  # ============
   # Enable networking.
   networking.networkmanager.enable = true;
 
+  # Enable blutooth.
+  hardware.bluetooth.enable = true;
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # ========
+  # Language
+  # ========
   # Set your time zone.
   time.timeZone = "Europe/Paris";
 
@@ -63,6 +66,9 @@ in
     LC_TIME = "fr_FR.UTF-8";
   };
 
+  # ===================
+  # Desktop environment
+  # ===================
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -79,15 +85,9 @@ in
   # Configure console keymap
   console.keyMap = "fr";
 
-  # Enable blutooth.
-  hardware.bluetooth.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # To enable fish terminal.
-  programs.fish.enable = true;
-
+  # =====
+  # Audio
+  # =====
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
 
@@ -97,16 +97,7 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.enable = true;
@@ -133,26 +124,18 @@ in
     };
   };
 
-  stylix.enable = true;
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # It should enable `locate` program.
+  # ====================
+  # Locate package setup
+  # ====================
   services.locate.enable = true;
   services.locate.package = pkgs.mlocate;
   services.locate.localuser = null;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  # =========================
+  # Other NixOS configuration
+  # =========================
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Automatic cleaning.
   nix.gc = {
@@ -163,23 +146,11 @@ in
 
   nix.settings.auto-optimise-store = true;
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-
+  system.stateVersion = "24.05";
 }
