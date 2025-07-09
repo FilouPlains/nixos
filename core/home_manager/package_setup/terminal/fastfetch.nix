@@ -4,7 +4,7 @@ let
   path = /etc/nixos/img;
 in
 {
-  config = lib.mkIf (!builtins.elem "fastfetch" osConfig.disabledPackage) or true {
+  config = lib.mkIf !builtins.elem "fastfetch" osConfig.disabledPackage or true {
     xdg.configFile."fastfetch/config.jsonc".text = builtins.toJSON
       {
         logo = {

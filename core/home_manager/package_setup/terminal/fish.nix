@@ -8,7 +8,7 @@ in
 
   config = {
     programs.fish = {
-      enable = (!builtins.elem "fish" osConfig.disabledPackage) or true;
+      enable = !builtins.elem "fish" osConfig.disabledPackage or true;
 
       # Everything that should be launch with the terminal.
       interactiveShellInit = /* fish */ ''

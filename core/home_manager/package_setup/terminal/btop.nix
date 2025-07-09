@@ -2,7 +2,7 @@
 
 {
   programs.btop = {
-    enable = (!builtins.elem "btop" osConfig.disabledPackage) or true;
+    enable = !builtins.elem "btop" osConfig.disabledPackage or true;
 
     settings = {
       theme_background = false;

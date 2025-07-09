@@ -31,7 +31,7 @@ let
 in
 {
   programs.kitty = {
-    enable = (!builtins.elem "kitty" osConfig.disabledPackage) or true;
+    enable = !builtins.elem "kitty" osConfig.disabledPackage or true;
 
     settings = {
       # ===========
