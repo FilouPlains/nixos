@@ -5,15 +5,13 @@ let
 in
 {
   options.users = {
-    enable = lib.mkEnableOption "Enable users module.";
-
     userList = lib.mkOption {
       default = [];
       description = "Declare users lists.";
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
     users.users = builtins.listToAttrs (map (user: {
         name = user.name;
         value = {
