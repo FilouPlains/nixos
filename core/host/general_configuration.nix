@@ -105,12 +105,14 @@
       name = "rouaud";
       description = "Lucas ROUAUD";
       extraGroups = [ "wheel" "networkmanager" "audio" ];
+      homeManagerPath = ./home/rouaud.nix;
     }
     {
       name = "root";
       description = "System administrator";
       extraGroups = [ "wheel" ];
       isNormalUser = false;
+      homeManagerPath = ./home/root.nix;
     }
   ];
 
@@ -118,8 +120,8 @@
     # Also pass inputs to home-manager modules.
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "rouaud" = import ./home/rouaud.nix;
-      "root" = import ./home/root.nix;
+      "rouaud" = import ;
+      "root" = import ;
     };
   };
 
