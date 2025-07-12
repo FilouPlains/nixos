@@ -66,10 +66,10 @@ in
   };
 
   config = {
-    # Declare manually installed packages.
-    nixpkgs.config.packageOverrides = pkgs: {
-      g = pkgs.callPackage "${path}/package/g/default.nix" { };
-    };
+    imports =
+      [
+        ../package/own_package_definition.nix
+      ];
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
