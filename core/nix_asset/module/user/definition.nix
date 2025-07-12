@@ -36,7 +36,7 @@ in
         (
           user: {
             name = user.name;
-            value = import "../../home_manager/user/${user.name}/${user.name}.nix";
+            value = import "../../../home_manager/user/${user.name}/${user.name}.nix";
           }
         )
         cfg.userList
