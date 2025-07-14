@@ -6,8 +6,15 @@ in
 {
   options.users = {
     userList = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [ ];
-      description = "Declare users lists.";
+      description = "Declare global users lists.";
+    };
+
+    userToAdd = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "Declare users to add to a host.";
     };
   };
 
