@@ -15,7 +15,7 @@
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.userList = [
+  user.userList = [
     {
       name = "lucas.rouaud";
       description = "Lucas ROUAUD";
@@ -24,8 +24,23 @@
     {
       name = "root";
       description = "System administrator";
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "networkmanager" ];
       isNormalUser = false;
+    }
+    {
+      name = "patrick.rouaud";
+      description = "Patricl ROUAUD";
+      extraGroups = [ "networkmanager" ];
+    }
+    {
+      name = "sergio.romano";
+      description = "Sergio ROMANO";
+      extraGroups = [ "networkmanager" ];
+    }
+    {
+      name = "renee.romano";
+      description = "Renée ROMANO";
+      extraGroups = [ "networkmanager" ];
     }
   ];
 }
