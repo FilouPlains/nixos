@@ -17,7 +17,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.userList = [
     {
-      name = "rouaud";
+      name = "lucas.rouaud";
       description = "Lucas ROUAUD";
       extraGroups = [ "wheel" "networkmanager" "audio" ];
     }
