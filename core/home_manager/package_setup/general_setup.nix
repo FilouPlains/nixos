@@ -1,0 +1,34 @@
+{ config, pkgs, osConfig, ... }:
+
+{
+  imports =
+    [
+      # ====
+      # Nvim
+      # ====
+      # N
+      # nvim/nvim.nix
+
+      # ================
+      # Remote connexion
+      # ================
+      # K
+      remote_connexion/keychain.nix
+
+      # ========
+      # Terminal
+      # ========
+      # B
+      terminal/btop.nix
+
+      # F
+      terminal/fastfetch.nix
+      terminal/fish.nix
+
+      # K
+      terminal/kitty.nix
+
+      # S
+      terminal/starship.nix
+    ];
+}
