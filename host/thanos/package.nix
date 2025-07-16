@@ -72,7 +72,6 @@ in
       "grc"
 
       # H
-      "home-manager"
       "htop"
 
       # I
