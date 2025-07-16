@@ -4,12 +4,14 @@
 
 { config, pkgs, inputs, ... }:
 
+let
+  module_path = "../nix_asset/module"
+in
 {
   imports =
     [
       # Include other nix files.
-      ./font.nix
-      ./package.nix
+      ../home_manager/package_setup/general_setup.nix
 
       # Other package setup.
       inputs.home-manager.nixosModules.default
@@ -17,8 +19,13 @@
       # ======
       # Module
       # ======
+      # F
+      "${module_path}/font.nix"
+      # P
+      "${module_path}/package.nix"
       # U
-      ../nix_asset/module/users.nix
+      "${module_path}/user/list.nix"
+      "${module_path}/user/definition.nix"
     ];
 
   # ===========
@@ -66,6 +73,9 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
+  # Configure console keymap
+  console.keyMap = "fr";
+
   # ===================
   # Desktop environment
   # ===================
@@ -82,9 +92,6 @@
     variant = "oss";
   };
 
-  # Configure console keymap
-  console.keyMap = "fr";
-
   # =====
   # Audio
   # =====
@@ -99,31 +106,13 @@
     pulse.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.userList = [
-    {
-      name = "rouaud";
-      description = "Lucas ROUAUD";
-      extraGroups = [ "wheel" "networkmanager" "audio" ];
-      homeManagerPath = ./home/rouaud.nix;
-    }
-    {
-      name = "root";
-      description = "System administrator";
-      extraGroups = [ "wheel" ];
-      isNormalUser = false;
-      homeManagerPath = ./home/root.nix;
-    }
+  # ====
+  # User
+  # ====
+  userToAdd = [
+    "root"
+    "lucas.rouaud"
   ];
-
-  home-manager = {
-    # Also pass inputs to home-manager modules.
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "rouaud" = import ;
-      "root" = import ;
-    };
-  };
 
   # ====================
   # Locate package setup
@@ -151,7 +140,8 @@
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
+  #
   # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # (`$ man configuration.nix` or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05";
 }
