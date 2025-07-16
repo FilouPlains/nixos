@@ -89,6 +89,7 @@ in
       # F
       "fastfetch"
       "fd"
+      "firefox"
       "fish"
       "fishPlugins.fzf"
       "fishPlugins.grc"
