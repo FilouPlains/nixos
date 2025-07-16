@@ -80,6 +80,7 @@ in
 
       # D
       "discord"
+      "dysk"
 
       # E
       "exfat"
