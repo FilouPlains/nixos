@@ -18,8 +18,13 @@ in
       # ======
       # F
       "${module_path}/font.nix"
+
       # P
       "${module_path}/package.nix"
+
+      # S
+      "${module_path}/stylix.nix"
+
       # U
       "${module_path}/user/list.nix"
       "${module_path}/user/definition.nix"
@@ -121,6 +126,12 @@ in
   # =========================
   # Other NixOS configuration
   # =========================
+  programs.fish.enable = true;
+  stylix.enable = true;
+
+  # Auto-start ssh.
+  programs.ssh.startAgent = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

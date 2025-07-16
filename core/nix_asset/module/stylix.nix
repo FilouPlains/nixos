@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  path = /etc/nixos;
+  path = /etc/nixos/core/image;
 in
 {
   # Colour theme.
@@ -31,7 +31,7 @@ in
   stylix.polarity = "dark";
 
   # Mandatory, even if not used…
-  stylix.image = "${path}/img/wallpaper.png";
+  stylix.image = "${path}/wallpaper.png";
 
   # Specify default fonts.
   stylix.fonts = {

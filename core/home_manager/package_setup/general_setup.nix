@@ -3,20 +3,21 @@
 {
   imports =
     [
-      # [[ Any ]]
-      # S
-      any/stylix.nix
-
-      # [[ Nvim ]]
+      # ====
+      # Nvim
+      # ====
       # N
       # nvim/nvim.nix
 
-      # [[ Remote connexion ]]
+      # ================
+      # Remote connexion
+      # ================
       # K
       remote_connexion/keychain.nix
-      remote_connexion/ssh.nix
 
-      # [[ Terminal ]]
+      # ========
+      # Terminal
+      # ========
       # B
       terminal/btop.nix
 

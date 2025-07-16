@@ -1,7 +1,7 @@
 { config, lib, pkgs, osConfig, ... }:
 
 let
-  path = /etc/nixos/img;
+  path = /etc/nixos/core/image;
   enable = !builtins.elem "fastfetch" osConfig.disabledPackage or true;
 in
 {
