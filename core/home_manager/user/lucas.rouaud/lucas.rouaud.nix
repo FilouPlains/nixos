@@ -9,5 +9,5 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "lucas.rouaud";
-  home.homeDirectory = "/home/${home.username}";
+  home.homeDirectory = "/home/lucas.rouaud";
 }

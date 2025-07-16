@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ../package_setup/package_setup.nix
+      ../package_setup/general_setup.nix
     ];
   # Do not change this value.
   # If you want to do so, check `Home Manager release notes`.
@@ -11,7 +11,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    MANROFFOPT "-P -c";
+    MANROFFOPT = "-P -c";
     MANPAGER = "nvimpager";
     PAGER = "nvimpager";
     COLORTERM = "truecolor";

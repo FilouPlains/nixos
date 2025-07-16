@@ -156,8 +156,8 @@ in
       map
         (user: {
           name = user.name;
-          value = import "../../../home_manager/user/" +
-            "${user.name}/${user.name}.nix";
+          value = import ("/etc/nixos/core/home_manager/user/" +
+            "${user.name}/${user.name}.nix");
         })
         filteredUserToAdd
     );

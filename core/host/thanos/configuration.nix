@@ -12,5 +12,5 @@
   networking.hostName = baseNameOf ./.;
 
   # Allow inverting left / right speakers.
-  shiftAudio.enable = true;
+  home-manager.users."lucas.rouaud".shiftAudio.enable = true;
 }

@@ -10,9 +10,6 @@ in
 {
   imports =
     [
-      # Include other nix files.
-      ../home_manager/package_setup/general_setup.nix
-
       # Other package setup.
       inputs.home-manager.nixosModules.default
 
@@ -109,7 +106,7 @@ in
   # ====
   # User
   # ====
-  userToAdd = [
+  user.userToAdd = [
     "root"
     "lucas.rouaud"
   ];
