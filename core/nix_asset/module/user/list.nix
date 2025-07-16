@@ -29,7 +29,7 @@
     }
     {
       name = "patrick.rouaud";
-      description = "Patricl ROUAUD";
+      description = "Patrick ROUAUD";
       extraGroups = [ "networkmanager" ];
     }
     {
