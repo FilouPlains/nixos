@@ -5,7 +5,7 @@
 { config, pkgs, inputs, ... }:
 
 let
-  module_path = "../nix_asset/module"
+  module_path = "/etc/nixos/core/nix_asset/module";
 in
 {
   imports =

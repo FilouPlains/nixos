@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.
 
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 
 let
   path = /etc/nixos;
@@ -54,11 +54,16 @@ let
     `listOf Any`  
         A list of resolved package values from `pkgs`, excluding any disabled packages.
   */
-  selectedPackage = packageList: (lib.subtractLists config.disabledPackage packageList) | >
-    builtins.map (packageName: lib.strings.splitString "." packageName) | >
+  selectedPackage = packageList: (lib.subtractLists config.disabledPackage packageList) |>
+    builtins.map (packageName: lib.strings.splitString "." packageName) |>
   builtins.map (packageNameList: getSubPackage pkgs packageNameList);
 in
 {
+  imports =
+    [
+      ../package/own_package_definition.nix
+    ];
+
   options.disabledPackage = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [ ];
@@ -66,11 +71,6 @@ in
   };
 
   config = {
-    imports =
-      [
-        ../package/own_package_definition.nix
-      ];
-
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = selectedPackage ([

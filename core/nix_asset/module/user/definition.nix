@@ -79,7 +79,7 @@ let
     Throw an error when a user is asked to be added for a host, but is not definied
     in `definedUser`.
   */
-  _ = assert (builtins.length undefinedUser == 0) || throw underfinedUserError; null;
+  _ = assert (builtins.length undefinedUser == 0) || throw undefinedUserError; null;
 in
 {
   options.user = {
@@ -125,7 +125,6 @@ in
         };
       });
 
-      type = lib.types.listOf lib.types.str;
       default = [ ];
       description = "Declare global users lists.";
     };

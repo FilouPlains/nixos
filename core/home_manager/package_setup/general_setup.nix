@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, osConfig, ... }:
 
 {
   imports =
@@ -9,7 +9,7 @@
 
       # [[ Nvim ]]
       # N
-      nvim/nvim.nix
+      # nvim/nvim.nix
 
       # [[ Remote connexion ]]
       # K
