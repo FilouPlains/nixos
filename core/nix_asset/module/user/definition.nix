@@ -19,7 +19,7 @@ let
     -------
     `lib.types.listOf lib.types.setType`
         A filtered list of user to include.
-   */
+  */
   filteredUserToAdd = builtins.filter (definedUserItem: builtins.elem definedUserItem.name userToAdd) definedUser;
 
   /**
@@ -34,7 +34,7 @@ let
     -------
     `lib.types.listOf lib.types.str`
         A list of defined user names.
-   */
+  */
   userName = map (definedUserItem: definedUserItem.name) definedUser;
 
   /**
@@ -53,24 +53,35 @@ let
     -------
     `lib.types.listOf lib.types.str`
         A filtered list of user that are undefined.
-   */
+  */
   undefinedUser = builtins.filter (userToAddItem: !builtins.elem userToAddItem userName) userToAdd;
-in
-{
+
+  /**
+    Format the error form the `undefinedUser` list.
+
+    Parameters
+    ----------
+    underfinedUser : `lib.types.listOf lib.types.str`
+        A filtered list of user that are undefined.
+
+    Returns
+    -------
+    `lib.types.str`
+        The error message to display if the `underfinedUser` list is not empty.
+  */
+  undefinedUserError = builtins.concatStringsSep "" [
+    "[Err##] The following users in `user.userToAdd` do not exist in "
+    "`user.userList`:\n - "
+    (builtins.concatStringsSep "\n  - " undefinedUser)
+  ];
+
   /**
     Throw an error when a user is asked to be added for a host, but is not definied
     in `definedUser`.
   */
-  if builtins.length undefinedUser != 0 then
-    abort (
-      builtins.concatStringsSep "" [
-        "[Err##] The following users in `user.userToAdd` do not exist in "
-	"`user.userList`:\n - "
-        (builtins.concatStringsSep "\n  - " undefinedUser)
-      ]
-    )
-  else ""
-
+  _ = assert (builtins.length undefinedUser == 0) || throw underfinedUserError; null;
+in
+{
   options.user = {
     userList = lib.mkOption {
       type = lib.types.listOf (lib.types.submodule {
