@@ -57,7 +57,7 @@ in
       # Inactive.
       inactive_tab_font_style = "normal";
       # tab_title_template = tab_format colour.base06 colour.base01 colour.base00;
-      tab_title_template = tab_format colour.base06 colour.base02 colour.base00;
+      tab_title_template = tab_format colour.base06 colour.base03 colour.base00;
 
       # Position and margin.
       tab_bar_edge = "top";
