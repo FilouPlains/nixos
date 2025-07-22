@@ -149,6 +149,7 @@ in
       "yazi"
 
       # Z
+      "zathura"
       "zoom-us"
       "zoxide"
     ]);
