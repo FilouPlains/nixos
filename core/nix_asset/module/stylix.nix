@@ -37,7 +37,7 @@ in
   stylix.fonts = {
     monospace = {
       package = pkgs.nerdfonts.override {fonts = ["Inconsolata"];};
-      name = "Inconsolata Nerd Font";
+      name = "Inconsolata";
     };
 
     sansSerif = {
