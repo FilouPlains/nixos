@@ -23,6 +23,7 @@ in
         "[](#${stylix.base03})"
         "$time"
         "$conda"
+	"$nix_shell"
         "$status\n"
         "$character"
       ];
@@ -40,7 +41,7 @@ in
 
       os = {
         disabled = false;
-        style = "fg:#ffffff bg:#${stylix.base03}";
+        style = "fg:#${stylix.base06} bg:#${stylix.base03}";
         format = "[$symbol ]($style)";
         symbols = {
           Arch = "󰣇";
@@ -60,7 +61,7 @@ in
 
       username = {
         disabled = false;
-        style_user = "fg:#ffffff bg:#${stylix.base03}";
+        style_user = "fg:#${stylix.base06} bg:#${stylix.base03}";
         style_root = "fg:#fbeeed bg:#${stylix.base03}";
         format = "[  $user ]($style)";
         show_always = true;
@@ -68,7 +69,7 @@ in
 
       hostname = {
         disabled = false;
-        style = "fg:#ffffff bg:#${stylix.base03}";
+        style = "fg:#${stylix.base06} bg:#${stylix.base03}";
         ssh_only = false;
         ssh_symbol = "󰖟 ";
         format = "[ $ssh_symbol󰔂  $hostname ]($style)";
@@ -77,7 +78,7 @@ in
 
       time = {
         disabled = false;
-        style = "fg:#ffffff bg:#${stylix.base03}";
+        style = "fg:#${stylix.base06} bg:#${stylix.base03}";
         # hour:minute format
         time_format = "%R";
         format = "[   $time ]($style)";
@@ -85,7 +86,7 @@ in
 
       directory = {
         disabled = false;
-        style = "fg:#ffffff bg:#${stylix.base0C}";
+        style = "fg:#${stylix.base06} bg:#${stylix.base0C}";
         truncation_length = 3;
         truncate_to_repo = false;
         format = "[   $path]($style)";
@@ -96,8 +97,8 @@ in
 
       status = {
         disabled = false;
-        style = "fg:#ffffff bg:#${stylix.base08}";
-        success_symbol = "[ 󰗡 ](fg:#ffffff bg:#${stylix.base0B})[](fg:#${stylix.base0B} bg:none)";
+        style = "fg:#${stylix.base06} bg:#${stylix.base08}";
+        success_symbol = "[ 󰗡 ](fg:#${stylix.base06} bg:#${stylix.base0B})[](fg:#${stylix.base0B} bg:none)";
         symbol = "  $status[](fg:#${stylix.base08} bg:none)";
         not_executable_symbol = "  $status[](fg:#${stylix.base08} bg:none)";
         not_found_symbol = "  $status[](fg:#${stylix.base08} bg:none)";
@@ -112,7 +113,7 @@ in
         truncation_length = 4;
         truncation_symbol = "…";
         ignore_branches = [ ];
-        style = "fg:#ffffff bg:#${stylix.base09}";
+        style = "fg:#${stylix.base06} bg:#${stylix.base09}";
         format = "[ $symbol$branch ]($style)";
       };
 
@@ -128,16 +129,26 @@ in
         staged = "+$count";
         renamed = "󰗧$count";
         deleted = "󰇾 $count";
-        style = "fg:#ffffff bg:#${stylix.base09}";
+        style = "fg:#${stylix.base06} bg:#${stylix.base09}";
         format = "[($all_status$ahead_behind )]($style)";
       };
 
       conda = {
         disabled = false;
-        style = "fg:#ffffff bg:#7fb335";
+        style = "fg:#${stylix.base06} bg:#7FB335";
         format = "[ $symbol$environment ]($style)";
         ignore_base = false;
         symbol = " ";
+      };
+
+      nix_shell = {
+        disabled = false;
+        symbol = "󱄅 ";
+        style = "fg:#${stylix.base06} bg:#4F75C0";
+        pure_msg = "";
+        impure_msg = " ";
+        unknown_msg = " ";
+        format = "[ $symbol$state$name ]($style)";
       };
     };
   };
