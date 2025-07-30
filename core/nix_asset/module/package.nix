@@ -123,7 +123,9 @@ in
       # N
       "nerdfonts"
       "neovim"
+      "nh"
       "nixpkgs-fmt"
+      "nix-output-monitor"
       "nvimpager"
 
       # P

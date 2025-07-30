@@ -42,14 +42,19 @@ in
 
       # Abbreviation. Difference with alias is expension!
       shellAbbrs = {
+        # C
+	clean = "nh clean all";
+
         # L
         lg = "lazygit";
 
         # N
         n = "nvim";
+	nix = "nom";
 
         # U
-        update = "nixos-rebuild switch --upgrade --impure --flake /etc/nixos/#${osConfig.networking.hostName}";
+        update = "nh os switch -- --impure";
+        update-old = "nixos-rebuild switch --upgrade --impure --flake /etc/nixos/#${osConfig.networking.hostName}";
 
         # V
         v = "nvim";

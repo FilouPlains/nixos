@@ -10,11 +10,18 @@
   home.stateVersion = "24.05";
 
   home.sessionVariables = {
+    # C
+    COLORTERM = "truecolor";
+
+    # E
     EDITOR = "nvim";
+
+    # M
     MANROFFOPT = "-P -c";
     MANPAGER = "nvimpager";
+
+    # P
     PAGER = "nvimpager";
-    COLORTERM = "truecolor";
   };
 
   # Let Home Manager install and manage itself.

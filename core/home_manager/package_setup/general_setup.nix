@@ -9,11 +9,14 @@
       # N
       # nvim/nvim.nix
 
-      # ================
-      # Remote connexion
-      # ================
+      # =====
+      # Other
+      # =====
       # K
-      remote_connexion/keychain.nix
+      other/keychain.nix
+
+      # O
+      other/nh.nix
 
       # ========
       # Terminal
