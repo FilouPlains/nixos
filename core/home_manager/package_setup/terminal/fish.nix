@@ -50,7 +50,6 @@ in
 
         # N
         n = "nvim";
-	nix = "nom";
 
         # U
         update = "nh os switch -- --impure";
