@@ -22,6 +22,7 @@
 
     # P
     PAGER = "nvimpager";
+    PYTHONPYCACHEPREFIX = "$HOME/.cache/cpython/";
   };
 
   # Let Home Manager install and manage itself.
