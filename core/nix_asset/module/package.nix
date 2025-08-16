@@ -111,6 +111,7 @@ in
       # K
       "keychain"
       "kitty"
+      "krita"
 
       # L
       "lazygit"

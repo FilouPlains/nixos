@@ -10,4 +10,11 @@
 
   # Define your hostname.
   networking.hostName = baseNameOf ./.;
+
+  # ===============
+  # Package gestion
+  # ===============
+  disabledPackage = [
+    "krita"
+  ];
 }
