@@ -28,16 +28,20 @@ in
         # Disable fish greeting.
         set fish_greeting
 
-        # Picture showing.
-        fastfetch
+        if status is-interactive
+          # Picture showing.
+          fastfetch
 
-        # Enable zoxide.
-        zoxide init fish --cmd cd | source
+          # Enable zoxide.
+          zoxide init fish --cmd cd | source
+	end
       '';
 
       shellInitLast = /* fish */ ''
-        # Enable "transience" starship prompt.
-	enable_transience
+        if status is-interactive
+          # Enable "transience" starship prompt.
+	  enable_transience
+	end
       '';
 
       # Abbreviation. Difference with alias is expension!
