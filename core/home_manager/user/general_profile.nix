@@ -3,7 +3,7 @@
 {
   imports =
     [
-      ../package_setup/general_setup.nix
+      ../package/general_setup.nix
     ];
   # Do not change this value.
   # If you want to do so, check `Home Manager release notes`.
