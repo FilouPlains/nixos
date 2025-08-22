@@ -135,13 +135,6 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Automatic cleaning.
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 15d";
-  };
-
   nix.settings.auto-optimise-store = true;
 
   # This value determines the NixOS release from which the default
