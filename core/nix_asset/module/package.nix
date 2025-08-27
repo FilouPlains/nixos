@@ -137,6 +137,9 @@ in
       "scrcpy"
       "starship"
 
+      # U
+      "unzip"
+
       # V
       "vesktop"
       "vlc"
