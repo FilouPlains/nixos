@@ -148,7 +148,7 @@ in
       "wget"
 
       # X
-      "xclip"
+      "xsel"
       "xwaylandvideobridge"
 
       # Y
