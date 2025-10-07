@@ -1,6 +1,10 @@
-{ config, lib, pkgs, osConfig, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: {
   programs.nh = {
     enable = !builtins.elem "nh" osConfig.disabledPackage or true;
 

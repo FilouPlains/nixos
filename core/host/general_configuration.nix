@@ -1,34 +1,34 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
-
-let
-  module_path = "/etc/nixos/core/nix_asset/module";
-in
 {
-  imports =
-    [
-      # Other package setup.
-      inputs.home-manager.nixosModules.default
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
+  module_path = "/etc/nixos/core/nix_asset/module";
+in {
+  imports = [
+    # Other package setup.
+    inputs.home-manager.nixosModules.default
 
-      # ======
-      # Module
-      # ======
-      # F
-      "${module_path}/font.nix"
+    # ======
+    # Module
+    # ======
+    # F
+    "${module_path}/font.nix"
 
-      # P
-      "${module_path}/package.nix"
+    # P
+    "${module_path}/package.nix"
 
-      # S
-      "${module_path}/stylix.nix"
+    # S
+    "${module_path}/stylix.nix"
 
-      # U
-      "${module_path}/user/list.nix"
-      "${module_path}/user/definition.nix"
-    ];
+    # U
+    "${module_path}/user/list.nix"
+    "${module_path}/user/definition.nix"
+  ];
 
   # ===========
   # Boot loader

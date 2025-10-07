@@ -12,10 +12,14 @@
     stylix.url = "github:danth/stylix/release-24.11";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: {
     nixosConfigurations = {
       "thanos" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           ./core/host/thanos/configuration.nix
           inputs.home-manager.nixosModules.default
@@ -24,7 +28,7 @@
       };
 
       "vador" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           ./core/host/vador/configuration.nix
           inputs.home-manager.nixosModules.default
@@ -33,7 +37,7 @@
       };
 
       "ashkar.behek" = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           ./core/host/ashkar.behek/configuration.nix
           inputs.home-manager.nixosModules.default

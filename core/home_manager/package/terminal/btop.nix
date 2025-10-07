@@ -1,6 +1,10 @@
-{ config, lib, pkgs, osConfig, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: {
   programs.btop = {
     enable = !builtins.elem "btop" osConfig.disabledPackage or true;
 

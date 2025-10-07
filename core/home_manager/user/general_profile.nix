@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      ../package/general_setup.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ../package/general_setup.nix
+  ];
   # Do not change this value.
   # If you want to do so, check `Home Manager release notes`.
   home.stateVersion = "24.05";

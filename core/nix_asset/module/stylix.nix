@@ -1,9 +1,6 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   path = /etc/nixos/core/image;
-in
-{
+in {
   # Colour theme.
   stylix.base16Scheme = {
     name = "nord";
@@ -27,7 +24,7 @@ in
     base0E = "b48ead";
     base0F = "5e81ac";
   };
- 
+
   stylix.polarity = "dark";
 
   # Mandatory, even if not used…

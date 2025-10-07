@@ -1,9 +1,12 @@
-{ config, lib, pkgs, osConfig, ... }:
-
-let
-  stylix = osConfig.lib.stylix.colors;
-in
 {
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: let
+  stylix = osConfig.lib.stylix.colors;
+in {
   programs.starship = {
     enable = !builtins.elem "starship" osConfig.disabledPackage or true;
 
@@ -23,7 +26,7 @@ in
         "[](#${stylix.base03})"
         "$time"
         "$conda"
-	"$nix_shell"
+        "$nix_shell"
         "$status\n"
         "$character"
       ];
@@ -112,7 +115,7 @@ in
         symbol = " ";
         truncation_length = 4;
         truncation_symbol = "…";
-        ignore_branches = [ ];
+        ignore_branches = [];
         style = "fg:#${stylix.base06} bg:#${stylix.base09}";
         format = "[ $symbol$branch ]($style)";
       };

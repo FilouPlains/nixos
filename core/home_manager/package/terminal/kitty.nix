@@ -1,27 +1,32 @@
-{ config, lib, pkgs, osConfig, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: let
   colour = config.stylix.base16Scheme;
   font = config.stylix.fonts;
 
-  /** 
-    Formats a tab title string for Kitty with custom colors.
+  /*
+  *
+  Formats a tab title string for Kitty with custom colors.
 
-    Parameters
-    ----------
-    foreground : `string`  
-        The name of the foreground color to apply on the tab text.
+  Parameters
+  ----------
+  foreground : `string`
+      The name of the foreground color to apply on the tab text.
 
-    background : `string`  
-        The name of the tab background color.
+  background : `string`
+      The name of the tab background color.
 
-    reset : `string`  
-        The `tab_bar_background` color.
+  reset : `string`
+      The `tab_bar_background` color.
 
-    Returns
-    -------
-    `string`  
-        The full Kitty setted tab.
+  Returns
+  -------
+  `string`
+      The full Kitty setted tab.
   */
   tab_format = foreground: background: reset: (
     builtins.concatStringsSep "" [
@@ -32,8 +37,7 @@ let
       "{fmt.fg._${reset}} "
     ]
   );
-in
-{
+in {
   stylix.targets.kitty.enable = false;
 
   programs.kitty = {

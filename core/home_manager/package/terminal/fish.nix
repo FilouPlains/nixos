@@ -1,8 +1,12 @@
-{ config, lib, pkgs, osConfig, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: let
   path = /etc/nixos;
-  
+
   stylix = osConfig.lib.stylix.colors;
   getRgb = canal: builtins.getAttr "base03-rgb-${canal}" stylix;
   # For the `printf` command. We have bold > RGB > transience prompt > reset.
@@ -15,8 +19,7 @@ let
     (getRgb "b")
     "m%s\\e[0m"
   ];
-in
-{
+in {
   options.shiftAudio.enable = lib.mkEnableOption "Enables shift audio function for fish.";
 
   config = {
@@ -24,30 +27,38 @@ in
       enable = !builtins.elem "fish" osConfig.disabledPackage or true;
 
       # Everything that should be launch with the terminal.
-      interactiveShellInit = /* fish */ ''
-        # Disable fish greeting.
-        set fish_greeting
+      interactiveShellInit =
+        /*
+        fish
+        */
+        ''
+          # Disable fish greeting.
+          set fish_greeting
 
-        if status is-interactive
-          # Picture showing.
-          fastfetch
+          if status is-interactive
+              # Picture showing.
+              fastfetch
 
-          # Enable zoxide.
-          zoxide init fish --cmd cd | source
-	end
-      '';
+              # Enable zoxide.
+              zoxide init fish --cmd cd | source
+          end
+        '';
 
-      shellInitLast = /* fish */ ''
-        if status is-interactive
-          # Enable "transience" starship prompt.
-	  enable_transience
-	end
-      '';
+      shellInitLast =
+        /*
+        fish
+        */
+        ''
+          if status is-interactive
+              # Enable "transience" starship prompt.
+              enable_transience
+          end
+        '';
 
       # Abbreviation. Difference with alias is expension!
       shellAbbrs = {
         # C
-	clean = "nh clean all";
+        clean = "nh clean all";
 
         # L
         lg = "lazygit";
@@ -86,104 +97,125 @@ in
         table = "g --statistic --all --table --table-style=unicode --title --relative-time --dir-first --sort name --git --time-style=long-iso";
         top = "btop";
         tree = "g --tree --icons --size";
-
       };
 
       # Define functions here.
       functions = {
         # C
         cat = {
-          body = /* fish */ ''
-            set path $argv
+          body =
+            /*
+            fish
+            */
+            ''
+              set path $argv
 
-            if test $(count $path) -eq 1
-              identify $path &> /dev/null 
+              if test $(count $path) -eq 1
+                  identify $path &> /dev/null
 
-              if test $status -eq 0
-                kitten icat --hold $path
+                  if test $status -eq 0
+                      kitten icat --hold $path
+                  else
+                      bat --paging always $path
+                  end
               else
-                bat --paging always $path
-              end
-            else
-              for subpath in $(find $path -maxdepth 0)
-                if test -d $subpath
-                  continue
-                end
+                  for subpath in $(find $path -maxdepth 0)
+                      if test -d $subpath
+                          continue
+                      end
 
-                identify $subpath &> /dev/null 
+                      identify $subpath &> /dev/null
 
-                if test $status -eq 0
-                  kitten icat $subpath
-                else
-                  bat --paging never $subpath
-                end
+                      if test $status -eq 0
+                          kitten icat $subpath
+                      else
+                          bat --paging never $subpath
+                      end
+                  end
               end
-            end
-          '';
+            '';
           description = "Cat files or images";
         };
 
         # M
         mkcd = {
-          body = /* fish */ '' 
-            mkdir -p $argv[1]
-            cd $argv[1]
-          '';
+          body =
+            /*
+            fish
+            */
+            ''
+              mkdir -p $argv[1]
+              cd $argv[1]
+            '';
           description = "Create a directory and go inside it";
         };
 
         # S
         shift-audio = lib.mkIf config.shiftAudio.enable {
-          body = /* fish */ ''
-            # Get main volume.
-            set __current_volume (pactl get-sink-volume (pactl get-default-sink) | string match -r "[0-9]+%")
+          body =
+            /*
+            fish
+            */
+            ''
+              # Get main volume.
+              set __current_volume (pactl get-sink-volume (pactl get-default-sink) | string match -r "[0-9]+%")
 
-            # If we are to "reverse-stereo", switch back to "normal".
-            if test (pactl get-default-sink) = "reverse-stereo"
-              # Get the "reverse-stereo" module id to unload it.
-              set __module_id (pactl list modules short | grep "reverse_audio" | cut -f1)
+              # If we are to "reverse-stereo", switch back to "normal".
+              if test (pactl get-default-sink) = "reverse-stereo"
+                  # Get the "reverse-stereo" module id to unload it.
+                  set __module_id (pactl list modules short | grep "reverse_audio" | cut -f1)
 
-              # Change back to "normal audio".
-              pactl unload-module $__module_id
-              pactl set-sink-volume (pactl get-default-sink) $__current_volume
+                  # Change back to "normal audio".
+                  pactl unload-module $__module_id
+                  pactl set-sink-volume (pactl get-default-sink) $__current_volume
 
-              set --erase __module_id
-            # Else, switch to "reverse-stereo".
-            else
-              pactl set-sink-volume (pactl get-default-sink) 100%
+                  set --erase __module_id
+              # Else, switch to "reverse-stereo".
+              else
+                  pactl set-sink-volume (pactl get-default-sink) 100%
 
-              # Shift left / right audio.
-              pactl load-module module-remap-sink \
-                sink_name=reverse-stereo \
-                master=0 \
-                channels=2 \
-                master_channel_map=front-right,front-left \
-                channel_map=front-left,front-right \
-                sink_properties=device.description="reverse_audio"
+                  # Shift left / right audio.
+                  pactl load-module module-remap-sink \
+                    sink_name=reverse-stereo \
+                    master=0 \
+                    channels=2 \
+                    master_channel_map=front-right,front-left \
+                    channel_map=front-left,front-right \
+                    sink_properties=device.description="reverse_audio"
 
-              # Set default audio to the shifted one.
-              pactl set-default-sink reverse-stereo
+                  # Set default audio to the shifted one.
+                  pactl set-default-sink reverse-stereo
 
-              # Set volume of the new sink to the same as the old one.
-              pactl set-sink-volume (pactl get-default-sink) $__current_volume
-            end
+                  # Set volume of the new sink to the same as the old one.
+                  pactl set-sink-volume (pactl get-default-sink) $__current_volume
+              end
 
-            set --erase __current_volume
-          '';
+              set --erase __current_volume
+            '';
           description = "Shift left and right audio.";
         };
 
-	starship_transient_prompt_func = {
-	  body = /* fish */ ''
-            printf "${transiencePrompt}" "── "
-          '';
-	  description = "Change transience prompt look.";
+        starship_transient_prompt_func = {
+          body =
+            /*
+            fish
+            */
+            ''
+              printf "${transiencePrompt}" "── "
+            '';
+          description = "Change transience prompt look.";
         };
       };
 
       plugins = with pkgs.fishPlugins; [
-        { name = "fzf"; inherit (fzf) src; }
-        { name = "grc"; inherit (grc) src; }
+        {
+          name = "fzf";
+          inherit (fzf) src;
+        }
+        {
+          name = "grc";
+          inherit (grc) src;
+        }
       ];
     };
 

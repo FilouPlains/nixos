@@ -1,12 +1,16 @@
-{ config, lib, pkgs, osConfig, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: let
   path = /etc/nixos/core/image;
   enable = !builtins.elem "fastfetch" osConfig.disabledPackage or true;
-in
-{
+in {
   config = lib.mkIf enable {
-    xdg.configFile."fastfetch/config.jsonc".text = builtins.toJSON
+    xdg.configFile."fastfetch/config.jsonc".text =
+      builtins.toJSON
       {
         logo = {
           source = "~/.config/fastfetch/logo_nix_white.png";
@@ -21,7 +25,8 @@ in
         display = {
           separator = " ";
           constants = [
-            "───────────────────────────────────────────────────────────────────────────"
+            lib.concatStrings
+            (lib.replicate 75 "─")
             "\\u001b[90m│\\u001b[75C│\\u001b[75D"
             "\\u001b[90m"
           ];

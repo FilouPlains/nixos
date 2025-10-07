@@ -1,6 +1,10 @@
-{ config, lib, pkgs, osConfig, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: {
   programs.keychain = {
     enable = !builtins.elem "keychain" osConfig.disabledPackage or true;
 
@@ -8,7 +12,7 @@
       "github_id_rsa"
     ];
 
-    agents = [ "ssh" ];
+    agents = ["ssh"];
 
     extraFlags = [
       "--inherit any"

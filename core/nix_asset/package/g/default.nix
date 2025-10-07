@@ -1,5 +1,9 @@
-{ stdenv, buildGoModule, fetchFromGitHub, lib }:
-
+{
+  stdenv,
+  buildGoModule,
+  fetchFromGitHub,
+  lib,
+}:
 buildGoModule rec {
   pname = "g";
   version = "0.29.0";
@@ -13,7 +17,7 @@ buildGoModule rec {
 
   vendorHash = "sha256-pAr/A731tzrWsCogaXD4fVSdC4kF+B2E+QXOSjHU18g=";
 
-  ldflags = [ "-s" "-w" ];
+  ldflags = ["-s" "-w"];
 
   doCheck = false;
 

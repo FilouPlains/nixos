@@ -1,12 +1,14 @@
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [
-      # Include other nix files.
-      ../general_configuration.nix
-      ./hardware.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include other nix files.
+    ../general_configuration.nix
+    ./hardware.nix
+  ];
 
   # Define your hostname.
   networking.hostName = baseNameOf ./.;
