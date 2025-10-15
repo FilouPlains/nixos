@@ -20,6 +20,9 @@
     # O
     other/nh.nix
 
+    # R
+    other/ruff.nix
+
     # ========
     # Terminal
     # ========

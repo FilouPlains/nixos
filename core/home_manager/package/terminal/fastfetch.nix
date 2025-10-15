@@ -25,8 +25,7 @@ in {
         display = {
           separator = " ";
           constants = [
-            lib.concatStrings
-            (lib.replicate 75 "─")
+            (lib.concatStrings (lib.replicate 75 "─"))
             "\\u001b[90m│\\u001b[75C│\\u001b[75D"
             "\\u001b[90m"
           ];
@@ -82,7 +81,8 @@ in {
             type = "custom";
           }
         ];
-      } |> builtins.replaceStrings [ "\\\\" ] [ "\\" ];
+      }
+      |> builtins.replaceStrings ["\\\\"] ["\\"];
 
     xdg.configFile."fastfetch/logo_nix_white.png".source = "${path}/logo_nix_white.png";
   };

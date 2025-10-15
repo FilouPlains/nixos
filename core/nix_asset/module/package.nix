@@ -137,6 +137,9 @@ in {
       # P
       "pulseaudio"
 
+      # R
+      "ruff"
+
       # S
       "sl"
       "scrcpy"
