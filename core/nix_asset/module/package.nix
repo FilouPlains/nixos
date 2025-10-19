@@ -138,6 +138,7 @@ in {
       "pulseaudio"
 
       # R
+      "ripgrep"
       "ruff"
 
       # S
