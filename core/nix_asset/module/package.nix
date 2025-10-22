@@ -136,7 +136,8 @@ in {
 
       # P
       "pulseaudio"
-      "python3"
+      "python312"
+      "python312Packages.ipython"
 
       # R
       "ripgrep"
