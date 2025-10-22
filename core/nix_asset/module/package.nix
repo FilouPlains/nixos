@@ -136,6 +136,7 @@ in {
 
       # P
       "pulseaudio"
+      "python3"
 
       # R
       "ripgrep"
