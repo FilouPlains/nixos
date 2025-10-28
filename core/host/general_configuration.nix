@@ -86,7 +86,7 @@ in {
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -98,7 +98,7 @@ in {
   # Audio
   # =====
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -121,7 +121,6 @@ in {
   # ====================
   services.locate.enable = true;
   services.locate.package = pkgs.mlocate;
-  services.locate.localuser = null;
 
   # =========================
   # Other NixOS configuration

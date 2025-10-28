@@ -114,6 +114,7 @@ in {
       "inkscape"
 
       # K
+      "kdePackages.xwaylandvideobridge"
       "keychain"
       "kitty"
       "krita"
@@ -127,7 +128,6 @@ in {
       "mlocate"
 
       # N
-      "nerdfonts"
       "neovim"
       "nh"
       "nixpkgs-fmt"
@@ -138,8 +138,10 @@ in {
       "pulseaudio"
       "python312"
       "python312Packages.ipython"
+      "python313Packages.radian"
 
       # R
+      "R"
       "ripgrep"
       "ruff"
 
@@ -160,7 +162,6 @@ in {
 
       # X
       "xsel"
-      "xwaylandvideobridge"
 
       # Y
       "yazi"

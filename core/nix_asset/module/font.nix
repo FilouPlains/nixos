@@ -2,18 +2,11 @@
 # your system.
 {pkgs, ...}: {
   fonts.packages = with pkgs; [
-    # For NerdFont installation.
-    (
-      nerdfonts.override {
-        fonts = ["Inconsolata"];
-      }
-    )
-
-    # I
-    inconsolata
-
     # L
     liberation_ttf_v1
+
+    # N
+    nerd-fonts.inconsolata
 
     # R
     roboto
