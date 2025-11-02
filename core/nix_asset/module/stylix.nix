@@ -33,8 +33,8 @@ in {
   # Specify default fonts.
   stylix.fonts = {
     monospace = {
-      package = pkgs.nerd-fonts.inconsolata;
-      name = "Inconsolata";
+      package = pkgs.nerd-fonts.sauce-code-pro;
+      name = "SauceCodePro NF";
     };
 
     sansSerif = {

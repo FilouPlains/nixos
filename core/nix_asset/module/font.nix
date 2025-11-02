@@ -6,7 +6,7 @@
     liberation_ttf_v1
 
     # N
-    nerd-fonts.inconsolata
+    nerd-fonts.sauce-code-pro
 
     # R
     roboto
