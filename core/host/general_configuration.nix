@@ -50,6 +50,9 @@ in {
 
   # Enable blutooth.
   hardware.bluetooth.enable = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

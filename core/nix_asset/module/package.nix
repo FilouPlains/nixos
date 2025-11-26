@@ -158,6 +158,8 @@ in {
       "vlc"
 
       # W
+      "wineWowPackages.stable"
+      "winetricks"
       "wget"
 
       # X
