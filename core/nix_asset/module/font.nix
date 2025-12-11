@@ -7,8 +7,14 @@
 
     # N
     nerd-fonts.sauce-code-pro
+    noto-fonts
+    noto-fonts-cjk-sans-static
+    noto-fonts-cjk-serif-static
 
     # R
     roboto
+
+    # T
+    texlivePackages.cormorantgaramond
   ];
 }
