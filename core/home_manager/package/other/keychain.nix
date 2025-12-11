@@ -12,10 +12,8 @@
       "github_id_rsa"
     ];
 
-    agents = ["ssh"];
-
     extraFlags = [
-      "--inherit any"
+      "--ssh-allow-forwarded"
       "--quiet"
     ];
   };

@@ -48,14 +48,66 @@ in {
   # Enable networking.
   networking.networkmanager.enable = true;
 
-  # Enable blutooth.
-  hardware.bluetooth.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.graphics.enable32Bit = true;
+  hardware = {
+    # Enable blutooth.
+    bluetooth.enable = true;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+  };
+
+  # ========
+  # Services
+  # ========
+  services = {
+    # Enable CUPS to print documents.
+    printing.enable = true;
+
+    # ===================
+    # Desktop environment
+    # ===================
+    # Enable the KDE Plasma Desktop Environment.
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+
+    # Configure keymap in X11
+    xserver = {
+      # Enable the X11 windowing system.
+      enable = true;
+
+      xkb = {
+        layout = "fr";
+        variant = "oss";
+      };
+    };
+
+    # ====================
+    # Locate package setup
+    # ====================
+    locate = {
+      enable = true;
+      package = pkgs.mlocate;
+    };
+
+    # =====
+    # Audio
+    # =====
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+
+    pipewire = {
+      enable = true;
+
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+
+      pulse.enable = true;
+    };
+  };
 
   # ========
   # Language
@@ -81,35 +133,10 @@ in {
   # Configure console keymap
   console.keyMap = "fr";
 
-  # ===================
-  # Desktop environment
-  # ===================
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "fr";
-    variant = "oss";
-  };
-
   # =====
   # Audio
   # =====
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # ====
   # User
@@ -118,12 +145,6 @@ in {
     "root"
     "lucas.rouaud"
   ];
-
-  # ====================
-  # Locate package setup
-  # ====================
-  services.locate.enable = true;
-  services.locate.package = pkgs.mlocate;
 
   # =========================
   # Other NixOS configuration

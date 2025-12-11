@@ -114,7 +114,6 @@ in {
       "inkscape"
 
       # K
-      "kdePackages.xwaylandvideobridge"
       "keychain"
       "kitty"
       "krita"
@@ -138,10 +137,10 @@ in {
       "pulseaudio"
       "python312"
       "python312Packages.ipython"
-      "python313Packages.radian"
 
       # R
       "R"
+      "radian"
       "ripgrep"
       "ruff"
 
