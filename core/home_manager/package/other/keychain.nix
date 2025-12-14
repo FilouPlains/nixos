@@ -13,7 +13,6 @@
     ];
 
     extraFlags = [
-      "--ssh-allow-forwarded"
       "--quiet"
     ];
   };
