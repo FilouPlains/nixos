@@ -90,7 +90,7 @@ in {
         ls = "g --icons --dir-first --sort name";
 
         # O
-        off = "shutdown now";
+        off = "shutdown --poweroff now";
 
         # T
         t = "g --tree --icons --size";
