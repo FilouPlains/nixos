@@ -4,7 +4,6 @@
 
 https://www.nixhub.io/
 
-
 ## If issues with stylix
 
 ```fish
@@ -24,4 +23,12 @@ nix-shell --command fish --packages \
     opencv
 
 Stirling-PDF
+```
+
+## Issues with fonts
+
+If there is some bugs with fonts, run:
+
+```fish
+sudo fc-cache -vr
 ```
