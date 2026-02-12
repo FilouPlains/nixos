@@ -12,12 +12,12 @@ _: {
     };
 
     wifi.ssid = "eduroam";
-    wifi-security.key-mgmt = "WPA-EAP";
+    wifi-security.key-mgmt = "wpa-eap";
 
     "802-1x" = {
       anonymous-identity = "anonymous@u-paris.fr";
       ca-cert = "/etc/ssl/certs/eduroam-ca.pem";
-      eap = "TTLS";
+      eap = "ttls";
       identity = "lucas.rouaud1";
       phase2-auth = "pap";
 
