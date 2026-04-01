@@ -18,6 +18,15 @@
     ...
   } @ inputs: {
     nixosConfigurations = {
+      "satan" = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./core/host/satan/configuration.nix
+          inputs.home-manager.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
+
       "thanos" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
