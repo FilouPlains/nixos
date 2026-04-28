@@ -62,9 +62,9 @@
     |> builtins.map (packageName: lib.strings.splitString "." packageName)
     |> builtins.map (packageNameList: getSubPackage pkgs packageNameList);
 in {
-  imports = [
-    ../package/own_package_definition.nix
-  ];
+  # imports = [
+  #   ../package/own_package_definition.nix
+  # ];
 
   options.disabledPackage = lib.mkOption {
     type = lib.types.listOf lib.types.str;
@@ -101,7 +101,7 @@ in {
       "fzf"
 
       # G
-      "g"
+      "g-ls"
       "gimp"
       "git"
       "grc"
@@ -149,6 +149,9 @@ in {
       "scrcpy"
       "starship"
 
+      # T
+      "typst"
+
       # U
       "unzip"
 
@@ -170,6 +173,7 @@ in {
       # Z
       "zathura"
       "zoom-us"
+      "zotero"
       "zoxide"
     ];
   };
