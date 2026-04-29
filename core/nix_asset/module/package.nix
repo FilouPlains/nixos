@@ -94,7 +94,7 @@ in {
       # F
       "fastfetch"
       "fd"
-      "firefox"
+      "firefox-bin"
       "fish"
       "fishPlugins.fzf"
       "fishPlugins.grc"
